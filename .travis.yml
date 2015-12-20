@@ -1,0 +1,95 @@
+# Heavily based on Boost.Hana's .travis.yml, (c) Louis Dionne 2015
+#  https://github.com/boostorg/hana
+
+language: c++
+compiler: clang
+os: linux
+sudo: false
+
+##########################################################################
+# Clang 3.7
+##########################################################################
+env: UNIT_TESTS=true COMPILER=clang++-3.7 BOOST_VERSION=1.59.0 CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Debug"
+addons:
+  apt:
+    packages: ["clang-3.7", "xorg-dev", "libglu1-mesa-dev"]
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.7
+      - llvm-toolchain-precise
+
+install:
+  ############################################################################
+  # All the dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
+  ############################################################################
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+
+  ############################################################################
+  # Install Boost headers
+  ############################################################################
+  - if [[ "${BOOST_VERSION}" == "1.59.0" ]]; then BOOST_URL="http://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz"; fi
+  - if [[ "${BOOST_URL}" != "" ]]; then mkdir boost && travis_retry wget --quiet -O - ${BOOST_URL} | tar --strip-components=1 -xz -C boost; fi
+  - CMAKE_OPTIONS+=" -DBOOST_ROOT=${DEPS_DIR}/boost"
+
+  ############################################################################
+  # Build Boost libs
+  ############################################################################
+  - (cd boost && ./bootstrap.sh --with-libraries=filesystem,system && ./b2)
+
+  ############################################################################
+  # Install a recent CMake
+  ############################################################################
+  - |
+    CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
+    mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+    export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+
+  ############################################################################
+  # Install libc++ and libc++abi (on Linux only; Xcode uses libc++ by default)
+  ############################################################################
+  - |
+      if [[ "${COMPILER}" == "clang++-3.7" ]]; then LLVM_VERSION="3.7.0"; fi
+
+      LLVM_URL="http://llvm.org/releases/${LLVM_VERSION}/llvm-${LLVM_VERSION}.src.tar.xz"
+      LIBCXX_URL="http://llvm.org/releases/${LLVM_VERSION}/libcxx-${LLVM_VERSION}.src.tar.xz"
+      LIBCXXABI_URL="http://llvm.org/releases/${LLVM_VERSION}/libcxxabi-${LLVM_VERSION}.src.tar.xz"
+      TAR_FLAGS="-xJ"
+
+      mkdir -p llvm llvm/build llvm/projects/libcxx llvm/projects/libcxxabi
+      travis_retry wget --quiet -O - ${LLVM_URL} | tar --strip-components=1 ${TAR_FLAGS} -C llvm
+      travis_retry wget --quiet -O - ${LIBCXX_URL} | tar --strip-components=1 ${TAR_FLAGS} -C llvm/projects/libcxx
+      travis_retry wget --quiet -O - ${LIBCXXABI_URL} | tar --strip-components=1 ${TAR_FLAGS} -C llvm/projects/libcxxabi
+      (cd llvm/build && cmake .. -DCMAKE_INSTALL_PREFIX=${DEPS_DIR}/llvm/install -DCMAKE_CXX_COMPILER=clang++)
+      (cd llvm/build/projects/libcxx && make install -j2)
+      (cd llvm/build/projects/libcxxabi && make install -j2)
+
+      export CXXFLAGS="-I ${DEPS_DIR}/llvm/install/include/c++/v1"
+      export LDFLAGS="-L ${DEPS_DIR}/llvm/install/lib -l c++ -l c++abi"
+      export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${DEPS_DIR}/llvm/install/lib"
+
+  ############################################################################
+  # Install yaml-cpp
+  ############################################################################
+  - |
+    git clone https://github.com/jbeder/yaml-cpp
+    (cd yaml-cpp && git checkout release-0.5.2 && cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX= -DBOOST_ROOT=${DEPS_DIR}/boost . && make -j2 && make DESTDIR=$(pwd) install)
+    CMAKE_OPTIONS+=" -DYAMLCPP_DIR=${DEPS_DIR}/yaml-cpp"
+
+before_script:
+  ############################################################################
+  # Go back to the root of the project and setup the build directory
+  ############################################################################
+  - cd ${TRAVIS_BUILD_DIR}
+  - (mkdir build && cd build && cmake .. -DCMAKE_CXX_COMPILER=${COMPILER} ${CMAKE_OPTIONS})
+
+script:
+  ############################################################################
+  # Build and run the unit tests and examples.
+  ############################################################################
+  - |
+    if [[ "${UNIT_TESTS}" == "true" ]]; then
+      export CTEST_PARALLEL_LEVEL=2 # Run unit tests on two cores
+      (cd build && make -j2 && make check)
+    fi
+

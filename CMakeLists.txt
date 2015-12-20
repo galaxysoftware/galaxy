@@ -26,7 +26,7 @@ include_directories(SYSTEM
   ${CMAKE_SOURCE_DIR}/ext/googletest/googlemock/include
 
   ${Boost_INCLUDE_DIRS}
-  ${YAMLCPP_INCLUDE_DIRS}
+  ${YAMLCPP_INCLUDE_DIR}
 )
 
 # Compiler flags.
