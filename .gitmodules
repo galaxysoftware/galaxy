@@ -1,0 +1,6 @@
+[submodule "ext/googletest"]
+	path = ext/googletest
+	url = https://github.com/galaxysoftware/googletest.git
+[submodule "cmake"]
+	path = cmake
+	url = https://github.com/galaxysoftware/cmake-modules

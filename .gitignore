@@ -1,3 +1,7 @@
+# Project specific patterns
+.syntastic_cpp_config
+build/
+
 # Compiled Object files
 *.slo
 *.lo
