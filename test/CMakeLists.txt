@@ -17,6 +17,10 @@ function(gxy_add_test TEST_NAME)
   target_link_libraries(${TEST_NAME} ${TEST_LIBRARIES})
 endfunction()
 
+# Sub-folders.
+add_subdirectory(components)
+add_subdirectory(utils/meta)
+
 # Unit tests.
 gxy_add_test(googletest
   SOURCES test_googletest.cpp
