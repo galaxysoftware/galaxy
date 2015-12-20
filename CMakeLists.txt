@@ -13,7 +13,7 @@ include(CreateSyntasticConfig)
 
 # Required packages.
 find_package(Boost 1.59 REQUIRED)
-find_package(YamlCpp 1.59 REQUIRED)
+find_package(YamlCpp REQUIRED)
 
 # Include path for project headers.
 include_directories(
@@ -24,6 +24,8 @@ include_directories(
 include_directories(SYSTEM
   ${CMAKE_SOURCE_DIR}/ext/googletest/googletest/include
   ${CMAKE_SOURCE_DIR}/ext/googletest/googlemock/include
+
+  ${CMAKE_SOURCE_DIR}/ext/glm
 
   ${Boost_INCLUDE_DIRS}
   ${YAMLCPP_INCLUDE_DIR}

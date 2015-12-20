@@ -15,6 +15,9 @@ struct apply<C, typelist<List...>>
   using type = C<List...>;
 };
 
+template<template<typename...> class C, typename List>
+using apply_t = typename apply<C, List>::type;
+
 } // namespace gxy::meta
 
 #endif // UTILS_META_APPLY_H
