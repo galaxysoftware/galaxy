@@ -25,6 +25,7 @@ include_directories(SYSTEM
   ${CMAKE_SOURCE_DIR}/ext/googletest/googletest/include
   ${CMAKE_SOURCE_DIR}/ext/googletest/googlemock/include
 
+  ${CMAKE_SOURCE_DIR}/ext/eggs-variant/include
   ${CMAKE_SOURCE_DIR}/ext/glm
 
   ${Boost_INCLUDE_DIRS}

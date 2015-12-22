@@ -12,12 +12,13 @@ add_custom_target(check
 function(gxy_add_test TEST_NAME)
   cmake_parse_arguments(TEST "" "" "SOURCES;LIBRARIES" ${ARGN})
 
-  add_test(NAME test_${TEST_NAME} COMMAND ${TEST_NAME})
+  add_test(NAME test.${TEST_NAME} COMMAND ${TEST_NAME})
   add_executable(${TEST_NAME} ${TEST_SOURCES})
   target_link_libraries(${TEST_NAME} ${TEST_LIBRARIES})
 endfunction()
 
 # Sub-folders.
+add_subdirectory(ast)
 add_subdirectory(components)
 add_subdirectory(utils/meta)
 
