@@ -9,6 +9,15 @@ gxy_add_test(component.name
   LIBRARIES gtest_main
 )
 
+gxy_add_test(component.parse
+  SOURCES
+    test_parse.cpp
+    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
+  LIBRARIES
+    gtest_main
+    ${YAMLCPP_LIBRARY}
+)
+
 gxy_add_test(component.transform
   SOURCES
     test_transform.cpp

@@ -3,6 +3,7 @@
 
 #include "component/empty_data.h"
 #include "component/name.h"
+#include "component/parse.h"
 
 #include <glm/vec3.hpp>
 
@@ -30,6 +31,13 @@ public:
 // Name of node.
 template <>
 static auto name<transform> = "transform";
+
+// Transform a YAML node into component data.
+template <>
+auto parse<transform::data>(const YAML::Node &) -> transform::data;
+
+template <>
+auto parse<transform::const_data>(const YAML::Node &) -> transform::const_data = delete;
 
 } // namespace gxy::components
 
