@@ -8,7 +8,7 @@ namespace components {
 
 // Text representation of a component. Used as a key in the config file.
 template <typename T>
-std::string name;
+static std::string name;
 
 } // namespace components
 } // namespace gxy
