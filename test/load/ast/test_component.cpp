@@ -1,4 +1,4 @@
-#include "ast/component.h"
+#include "load/ast/component.h"
 
 using namespace gxy;
 
