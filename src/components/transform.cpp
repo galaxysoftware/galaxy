@@ -1,4 +1,4 @@
-#include "component/transform.h"
+#include "components/transform.h"
 
 #include "load/yaml/vec3.h"
 
@@ -36,6 +36,13 @@ auto parse<transform::data>(const YAML::Node &node) -> transform::data
     node["rotate"].as<glm::vec3>(),
     node["scale"].as<glm::vec3>()
   };
+}
+
+template <>
+auto parse<transform::const_data>(const YAML::Node &node) -> transform::const_data
+{
+  assert(node.size() == 0);
+  return {};
 }
 
 } // namespace gxy::components

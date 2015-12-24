@@ -1,9 +1,9 @@
 #ifndef COMPONENT_TRANSFORM_H
 #define COMPONENT_TRANSFORM_H
 
-#include "component/empty_data.h"
-#include "component/name.h"
-#include "component/parse.h"
+#include "components/empty_data.h"
+#include "components/name.h"
+#include "components/parse.h"
 
 #include <glm/vec3.hpp>
 
@@ -37,7 +37,7 @@ template <>
 auto parse<transform::data>(const YAML::Node &) -> transform::data;
 
 template <>
-auto parse<transform::const_data>(const YAML::Node &) -> transform::const_data = delete;
+auto parse<transform::const_data>(const YAML::Node &) -> transform::const_data;
 
 } // namespace gxy::components
 

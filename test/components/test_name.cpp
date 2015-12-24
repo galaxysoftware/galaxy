@@ -1,5 +1,5 @@
-#include "component/list.h"
-#include "component/name.h"
+#include "components/list.h"
+#include "components/name.h"
 
 #include "utils/meta/apply.h"
 

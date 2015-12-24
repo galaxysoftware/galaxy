@@ -1,4 +1,4 @@
-#include "component/transform.h"
+#include "components/transform.h"
 
 #include <gtest/gtest.h>
 

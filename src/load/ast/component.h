@@ -1,7 +1,7 @@
 #ifndef AST_COMPONENT_H
 #define AST_COMPONENT_H
 
-#include "component/list.h"
+#include "components/list.h"
 
 #include "utils/meta/apply.h"
 #include "utils/meta/transform.h"
