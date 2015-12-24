@@ -7,6 +7,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 # Required modules.
 include(CMakeParseArguments)
 include(CTest)
+include(ProcessorCount)
 
 include(AddCompilerFlag)
 include(CreateSyntasticConfig)

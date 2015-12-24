@@ -1,9 +1,13 @@
 # Enable ctest
 enable_testing()
 
+# Count the cores available (for paralellising the unit tests).
+ProcessorCount(J)
+message("Found ${J} cores.")
+
 # `check` command to run all unit tets.
 add_custom_target(check
-  COMMAND ctest --output-on-failure
+  COMMAND ctest --output-on-failure -j ${J}
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   COMMENT "Build and then run all the tests and examples."
 )
@@ -14,6 +18,7 @@ function(gxy_add_test TEST_NAME)
 
   add_test(NAME test.${TEST_NAME} COMMAND ${TEST_NAME})
   add_executable(${TEST_NAME} ${TEST_SOURCES})
+  add_dependencies(check ${TEST_NAME})
   target_link_libraries(${TEST_NAME} ${TEST_LIBRARIES})
 endfunction()
 
