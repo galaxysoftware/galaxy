@@ -3,11 +3,13 @@
 
 #include "components/empty_data.h"
 #include "components/name.h"
-#include "components/parse.h"
+
+#include "load/parse.h"
 
 #include <glm/vec3.hpp>
 
-namespace gxy::components {
+namespace gxy {
+namespace components {
 
 // The transform component is responsible for describing an entity's position in space.
 class transform
@@ -32,14 +34,18 @@ public:
 template <>
 static auto name<transform> = "transform";
 
+} // namespace components
+
 // Transform a YAML node into component data.
 template <>
-auto parse<transform::data>(const YAML::Node &) -> transform::data;
+auto parse<components::transform::data>(const YAML::Node &)
+  -> components::transform::data;
 
 template <>
-auto parse<transform::const_data>(const YAML::Node &) -> transform::const_data;
+auto parse<components::transform::const_data>(const YAML::Node &)
+  -> components::transform::const_data;
 
-} // namespace gxy::components
+} // namespace gxy
 
 #endif // COMPONENT_TRANSFORM_H
 

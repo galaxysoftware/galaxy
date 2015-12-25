@@ -4,7 +4,8 @@
 
 #include <yaml-cpp/yaml.h>
 
-namespace gxy::components {
+namespace gxy {
+namespace components {
 
 transform::data::data(glm::vec3 translate, glm::vec3 rotate, glm::vec3 scale)
 : translate(std::move(translate)),
@@ -25,8 +26,11 @@ auto transform::data::operator!=(const data &o) const -> bool
   return ! (*this == o);
 }
 
+} // namespace components
+
 template <>
-auto parse<transform::data>(const YAML::Node &node) -> transform::data
+auto parse<components::transform::data>(const YAML::Node &node)
+  -> components::transform::data
 {
   assert(node.IsMap());
   assert(node.size() == 3);
@@ -39,11 +43,12 @@ auto parse<transform::data>(const YAML::Node &node) -> transform::data
 }
 
 template <>
-auto parse<transform::const_data>(const YAML::Node &node) -> transform::const_data
+auto parse<components::transform::const_data>(const YAML::Node &node)
+  -> components::transform::const_data
 {
   assert(node.size() == 0);
   return {};
 }
 
-} // namespace gxy::components
+} // namespace gxy
 
