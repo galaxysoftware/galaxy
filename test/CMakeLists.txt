@@ -26,6 +26,7 @@ endfunction()
 add_subdirectory(load/ast)
 add_subdirectory(load/yaml)
 add_subdirectory(components)
+add_subdirectory(utils)
 add_subdirectory(utils/meta)
 
 # Unit tests.
