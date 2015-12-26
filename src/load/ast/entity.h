@@ -17,6 +17,9 @@ class entity
 public:
   entity(std::string name, std::vector<component> components);
 
+  auto operator==(const entity &o) const -> bool;
+  auto operator!=(const entity &o) const -> bool;
+
   std::string name;
   std::vector<component> components;
 };

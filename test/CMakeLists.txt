@@ -23,6 +23,7 @@ function(gxy_add_test TEST_NAME)
 endfunction()
 
 # Sub-folders.
+add_subdirectory(load)
 add_subdirectory(load/ast)
 add_subdirectory(load/yaml)
 add_subdirectory(components)
