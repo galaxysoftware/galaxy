@@ -81,7 +81,6 @@ before_script:
   # Go back to the root of the project and setup the build directory
   ############################################################################
   - cd ${TRAVIS_BUILD_DIR}
-  - export CTEST_PARALLEL_LEVEL=2 # Run unit tests on two cores
   - (mkdir build && cd build && cmake .. -DCMAKE_CXX_COMPILER=${COMPILER} ${CMAKE_OPTIONS})
 
 script:
