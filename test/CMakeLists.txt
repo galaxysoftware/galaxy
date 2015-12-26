@@ -2,8 +2,12 @@
 enable_testing()
 
 # Count the cores available (for paralellising the unit tests).
-ProcessorCount(J)
-message("Found ${J} cores.")
+if (NOT DEFINED CTEST_PARALLEL_LEVEL)
+  ProcessorCount(J)
+  message("Found ${J} cores.")
+else()
+  set(J ${CTEST_PARALLEL_LEVEL})
+endif()
 
 # `check` command to run all unit tets.
 add_custom_target(check
