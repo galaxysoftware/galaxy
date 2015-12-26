@@ -12,11 +12,11 @@ struct stub_component
   using const_data = bool;
 };
 
-using uut = ast::component_facade<stub_component>;
+using stub_uut = ast::component_facade<stub_component>;
 
 // Check that the types of our data has successfully propagated into the facade.
-static_assert(std::is_same<decltype(std::declval<uut>().data), int>{});
-static_assert(std::is_same<decltype(std::declval<uut>().const_data), bool>{});
+static_assert(std::is_same<decltype(std::declval<stub_uut>().data), int>{});
+static_assert(std::is_same<decltype(std::declval<stub_uut>().const_data), bool>{});
 
 // All existing components should be accessible in our ast::component variant.
 using expected = eggs::variant<
@@ -27,7 +27,57 @@ static_assert(std::is_same<expected, ast::component>{});
 
 struct fixture : public ::testing::Test{};
 
-TEST(fixture, parse_transform)
+TEST_F(fixture, facade_data)
+{
+  const stub_uut uut(42, true);
+  ASSERT_EQ(42, uut.data);
+}
+
+TEST_F(fixture, facade_const_data)
+{
+  const stub_uut uut(42, false);
+  ASSERT_EQ(false, uut.const_data);
+}
+
+TEST_F(fixture, is_equal_self)
+{
+  const stub_uut uut(42, false);
+  ASSERT_TRUE(uut == stub_uut(42, false));
+}
+
+TEST_F(fixture, not_not_equal_self)
+{
+  const stub_uut uut(42, false);
+  ASSERT_FALSE(uut != stub_uut(42, false));
+}
+
+TEST_F(fixture, not_equal_different_data)
+{
+  const stub_uut uut(42, false);
+  ASSERT_FALSE(uut == stub_uut(89, false));
+}
+
+TEST_F(fixture, is_not_equal_different_data)
+{
+  const stub_uut uut(42, false);
+  ASSERT_TRUE(uut != stub_uut(89, false));
+}
+
+TEST_F(fixture, not_equal_different_const_data)
+{
+  const stub_uut uut(42, false);
+  ASSERT_FALSE(uut == stub_uut(42, true));
+}
+
+TEST_F(fixture, is_not_equal_different_const_data)
+{
+  const stub_uut uut(42, false);
+  ASSERT_TRUE(uut != stub_uut(42, true));
+}
+
+struct parse_fixture : public ::testing::Test{};
+
+TEST_F(parse_fixture, parse_transform)
 {
   const auto input = YAML::Load(
     "transform:\n"

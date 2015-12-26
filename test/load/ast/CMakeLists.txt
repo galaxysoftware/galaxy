@@ -9,3 +9,14 @@ gxy_add_test(load.ast.component
     gtest_main
 )
 
+gxy_add_test(load.ast.entity
+  SOURCES
+    test_entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/load/ast/component.cpp
+    ${CMAKE_SOURCE_DIR}/src/load/ast/entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
+  LIBRARIES
+    ${YAMLCPP_LIBRARY}
+    gtest_main
+)
+
