@@ -12,11 +12,13 @@ using namespace gxy;
 
 struct fixture : public ::testing::Test
 {
+  const ::testing::TestInfo &info;
   scoped_directory dir;
   boost::filesystem::path uut;
 
   fixture(const boost::filesystem::path &file)
-  : dir{"badger.dir"},
+  : info{*::testing::UnitTest::GetInstance()->current_test_info()},
+    dir{info.name()},
     uut{dir.name() / file}
   {
   }

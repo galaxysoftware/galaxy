@@ -8,40 +8,41 @@
 
 using namespace gxy;
 
-struct fixture : public ::testing::Test{};
+struct fixture : public ::testing::Test
+{
+  const ::testing::TestInfo &info{*::testing::UnitTest::GetInstance()->current_test_info()};
+};
 
 TEST_F(fixture, directory_exists)
 {
-  scoped_directory dir{"badger.dir"};
-  ASSERT_TRUE(boost::filesystem::exists("badger.dir"));
+  scoped_directory dir{info.name()};
+  ASSERT_TRUE(boost::filesystem::exists(info.name()));
 }
 
 TEST_F(fixture, out_of_scope_directory_doesnt_exist)
 {
   {
-    scoped_directory dir{"badger.dir"};
+    scoped_directory dir{info.name()};
   }
 
-  ASSERT_FALSE(boost::filesystem::exists("badger.dir"));
+  ASSERT_FALSE(boost::filesystem::exists(info.name()));
 }
 
 TEST_F(fixture, out_of_scope_nonempty_directory_doesnt_exist)
 {
   {
-    scoped_directory dir{"badger.dir"};
+    scoped_directory dir{info.name()};
 
-    const auto file(dir.name() / "badger.txt");
+    const auto file(dir.name() / info.name());
     std::ofstream fs(file.string());
-
-    ASSERT_TRUE(boost::filesystem::exists("badger.dir/badger.txt"));
   }
 
-  ASSERT_FALSE(boost::filesystem::exists("badger.dir"));
+  ASSERT_FALSE(boost::filesystem::exists(info.name()));
 }
 
 TEST_F(fixture, name)
 {
-  scoped_directory dir{"badger.dir"};
-  ASSERT_EQ("badger.dir", dir.name());
+  scoped_directory dir{info.name()};
+  ASSERT_EQ(info.name(), dir.name());
 }
 
