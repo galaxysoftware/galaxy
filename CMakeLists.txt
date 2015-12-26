@@ -37,6 +37,10 @@ include_directories(SYSTEM
 add_compiler_flag(CXX
   CLANG
     -std=c++1z
+    -Werror
+    -Wall
+    -Wextra
+    -pedantic
 )
 
 # Update .syntastic_cpp_config file.
