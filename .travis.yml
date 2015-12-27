@@ -51,18 +51,6 @@ install:
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
 
   ############################################################################
-  # Install Boost headers
-  ############################################################################
-  - if [[ "${BOOST_VERSION}" == "1.59.0" ]]; then BOOST_URL="http://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz"; fi
-  - if [[ "${BOOST_URL}" != "" ]]; then mkdir boost && travis_retry wget --quiet -O - ${BOOST_URL} | tar --strip-components=1 -xz -C boost; fi
-  - CMAKE_OPTIONS+=" -DBOOST_ROOT=${DEPS_DIR}/boost"
-
-  ############################################################################
-  # Build Boost libs
-  ############################################################################
-  - (cd boost && ./bootstrap.sh --with-libraries=filesystem,system && ./b2)
-
-  ############################################################################
   # Install a recent CMake
   ############################################################################
   - |
@@ -92,6 +80,18 @@ install:
       export CXXFLAGS="-I ${DEPS_DIR}/llvm/install/include/c++/v1"
       export LDFLAGS="-L ${DEPS_DIR}/llvm/install/lib -l c++ -l c++abi"
       export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${DEPS_DIR}/llvm/install/lib"
+
+  ############################################################################
+  # Install Boost headers
+  ############################################################################
+  - if [[ "${BOOST_VERSION}" == "1.59.0" ]]; then BOOST_URL="http://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz"; fi
+  - if [[ "${BOOST_URL}" != "" ]]; then mkdir boost && travis_retry wget --quiet -O - ${BOOST_URL} | tar --strip-components=1 -xz -C boost; fi
+  - CMAKE_OPTIONS+=" -DBOOST_ROOT=${DEPS_DIR}/boost"
+
+  ############################################################################
+  # Build Boost libs
+  ############################################################################
+  - (cd boost && ./bootstrap.sh --with-libraries=filesystem,system && ./b2)
 
   ############################################################################
   # Install yaml-cpp
