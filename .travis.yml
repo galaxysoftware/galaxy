@@ -6,20 +6,37 @@ compiler: clang
 os: linux
 sudo: false
 
+env:
+  # Workaround for https://github.com/travis-ci/travis-ci/issues/4681
+  matrix:
+    - TRAVIS_EMPTY_JOB_WORKAROUND=true
+
 matrix:
-  ##########################################################################
-  # Clang 3.7
-  ##########################################################################
-  - env: UNIT_TESTS=true COMPILER=clang++-3.7 BOOST_VERSION=1.59.0 CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Debug"
-    addons: &clang37
-      apt:
-        packages: ["clang-3.7", "xorg-dev", "libglu1-mesa-dev"]
-        sources:
-          - ubuntu-toolchain-r-test
-          - llvm-toolchain-precise-3.7
-          - llvm-toolchain-precise
+  exclude:
+    - env: TRAVIS_EMPTY_JOB_WORKAROUND=true
+
+  include:
+    ##########################################################################
+    # Clang 3.7, Boost 1.59, Debug
+    ##########################################################################
+    - env: UNIT_TESTS=true COMPILER=clang++-3.7 BOOST_VERSION=1.59.0 BUILD_TYPE="Debug"
+      addons: &packages
+        apt:
+          packages: ["clang-3.7", "xorg-dev", "libglu1-mesa-dev"]
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.7
+            - llvm-toolchain-precise
+
+    ##########################################################################
+    # Clang 3.7, Boost 1.59, Release
+    ##########################################################################
+    - env: UNIT_TESTS=true COMPILER=clang++-3.7 BOOST_VERSION=1.59.0 BUILD_TYPE="Release"
+      addons: *packages
 
 install:
+  - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=$BUILD_TYPE"
+
   ############################################################################
   # All the dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
   ############################################################################
