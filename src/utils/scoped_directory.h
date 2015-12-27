@@ -5,7 +5,8 @@
 
 namespace gxy {
 
-// Wrapper around creating and destroying a directory.
+// Wrapper around creating and destroying a directory. Will remove the directory if it
+// already exists.
 class scoped_directory
 {
 public:
