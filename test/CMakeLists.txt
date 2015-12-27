@@ -19,10 +19,17 @@ add_custom_target(check
 function(gxy_add_test TEST_NAME)
   cmake_parse_arguments(TEST "" "" "SOURCES;LIBRARIES" ${ARGN})
 
-  add_test(NAME test.${TEST_NAME} COMMAND ${TEST_NAME})
   add_executable(${TEST_NAME} ${TEST_SOURCES})
   add_dependencies(check ${TEST_NAME})
   target_link_libraries(${TEST_NAME} ${TEST_LIBRARIES})
+
+  if (GXY_ENABLE_VALGRIND)
+    set(TEST_COMMAND ${Valgrind_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/${TEST_NAME})
+  else()
+    set(TEST_COMMAND "${TEST_NAME}")
+  endif()
+
+  add_test(NAME test.${TEST_NAME} COMMAND ${TEST_COMMAND})
 endfunction()
 
 # Sub-folders.

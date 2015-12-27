@@ -9,6 +9,9 @@ if (CMAKE_BUILD_TYPE STREQUAL "")
   set(CMAKE_BUILD_TYPE Debug)
 endif()
 
+# Options
+option(GXY_ENABLE_VALGRIND "Run the unit tests and examples under Valgrind if it is found." OFF)
+
 # Required modules.
 include(CMakeParseArguments)
 include(CTest)
@@ -20,6 +23,10 @@ include(CreateSyntasticConfig)
 # Required packages.
 find_package(Boost 1.59 REQUIRED COMPONENTS system filesystem)
 find_package(YamlCpp REQUIRED)
+
+if (GXY_ENABLE_VALGRIND)
+  find_package(Valgrind REQUIRED)
+endif()
 
 # Include path for project headers.
 include_directories(
