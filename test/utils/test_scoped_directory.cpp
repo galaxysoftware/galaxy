@@ -19,7 +19,7 @@ TEST_F(fixture, directory_exists)
 //  ASSERT_TRUE(boost::filesystem::exists(info.name()));
 }
 
-TEST_F(fixture, DISABLED_out_of_scope_directory_doesnt_exist)
+TEST_F(fixture, out_of_scope_directory_doesnt_exist)
 {
   {
     scoped_directory dir{info.name()};
@@ -28,7 +28,7 @@ TEST_F(fixture, DISABLED_out_of_scope_directory_doesnt_exist)
   ASSERT_FALSE(boost::filesystem::exists(info.name()));
 }
 
-TEST_F(fixture, DISABLED_out_of_scope_nonempty_directory_doesnt_exist)
+TEST_F(fixture, out_of_scope_nonempty_directory_doesnt_exist)
 {
   {
     scoped_directory dir{info.name()};

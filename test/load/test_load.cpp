@@ -34,7 +34,7 @@ struct no_entities : public fixture
   }
 };
 
-TEST_F(no_entities, DISABLED_empty_vector)
+TEST_F(no_entities, empty_vector)
 {
   ASSERT_EQ(std::vector<ast::entity>(), load(uut));
 }
@@ -52,7 +52,7 @@ struct single_entity : public fixture
   }
 };
 
-TEST_F(single_entity, DISABLED_vector_with_single_entity)
+TEST_F(single_entity, vector_with_single_entity)
 {
   std::vector<ast::entity> expected{ ast::entity("game_object1", std::vector<ast::component>()) };
   ASSERT_EQ(expected, load(uut));
@@ -73,7 +73,7 @@ struct multiple_entities : public fixture
   }
 };
 
-TEST_F(multiple_entities, DISABLED_vector_with_multiple_entities)
+TEST_F(multiple_entities, vector_with_multiple_entities)
 {
   std::vector<ast::entity> expected{
     ast::entity("game_object1", std::vector<ast::component>()),
