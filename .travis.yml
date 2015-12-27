@@ -91,7 +91,7 @@ install:
   ############################################################################
   # Build Boost libs
   ############################################################################
-  - (cd boost && ./bootstrap.sh --with-libraries=filesystem,system && ./b2)
+  - (cd boost && ./bootstrap.sh --with-libraries=filesystem,system && ./b2 toolset=clang cxxflags="-stdlib=libc++" linkflags="-stdlib=libc++")
 
   ############################################################################
   # Install yaml-cpp
