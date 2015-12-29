@@ -19,10 +19,10 @@ public:
   using const_data_type = typename T::const_data;
 
   // The components current state and a placeholder for calculating it's next state.
-  data_type current;
-  data_type next;
+  data_type &current;
+  data_type &next;
 
-  const_data_type const_data;
+  const const_data_type &const_data;
 };
 
 // A component can be any of our defined components.
