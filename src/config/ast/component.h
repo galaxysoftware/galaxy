@@ -21,8 +21,9 @@ template <typename T>
 class component_facade
 {
 public:
-  using data_type = typename T::data;
-  using const_data_type = typename T::const_data;
+  using type = T;
+  using data_type = typename type::data;
+  using const_data_type = typename type::const_data;
 
   component_facade(data_type data, const_data_type const_data);
 

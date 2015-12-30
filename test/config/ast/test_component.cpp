@@ -14,6 +14,8 @@ struct stub_component
 
 using stub_uut = ast::component_facade<stub_component>;
 
+static_assert(std::is_same<stub_component, stub_uut::type>{});
+
 // Check that the types of our data has successfully propagated into the facade.
 static_assert(std::is_same<decltype(std::declval<stub_uut>().data), int>{});
 static_assert(std::is_same<decltype(std::declval<stub_uut>().const_data), bool>{});
