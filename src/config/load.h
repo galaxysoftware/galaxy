@@ -1,7 +1,7 @@
 #ifndef CONFIG_LOAD_H
 #define CONFIG_LOAD_H
 
-#include "ast/entity.h"
+#include "ast/scene.h"
 
 #include <boost/filesystem/path.hpp>
 
@@ -10,8 +10,7 @@
 namespace gxy {
 
 // Takes a config file on disk, loads and parses it into an abstract syntax tree.
-auto load(const boost::filesystem::path &config)
-  -> std::vector<ast::entity>;
+auto load(const boost::filesystem::path &config) -> ast::scene;
 
 } // namespace gxy
 

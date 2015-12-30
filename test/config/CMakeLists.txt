@@ -4,6 +4,7 @@ gxy_add_test(config.load
     test_load.cpp
     ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
     ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/scene.cpp
     ${CMAKE_SOURCE_DIR}/src/config/load.cpp
     ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
     ${CMAKE_SOURCE_DIR}/src/utils/scoped_directory.cpp

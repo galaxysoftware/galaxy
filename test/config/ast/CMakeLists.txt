@@ -20,3 +20,15 @@ gxy_add_test(config.ast.entity
     gtest_main
 )
 
+gxy_add_test(config.ast.scene
+  SOURCES
+    test_scene.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/scene.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
+  LIBRARIES
+    ${YAMLCPP_LIBRARY}
+    gtest_main
+)
+

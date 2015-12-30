@@ -26,7 +26,7 @@ public:
 
 } // namespace ast
 
-// Transform a component into an AST node.
+// Transform an entity into an AST node.
 template <>
 auto parse<ast::entity>(const YAML::Node &) -> ast::entity;
 
