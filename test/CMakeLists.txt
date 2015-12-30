@@ -47,20 +47,8 @@ add_subdirectory(utils)
 add_subdirectory(utils/meta)
 
 # Unit tests.
-gxy_add_test(googletest
-  SOURCES test_googletest.cpp
+gxy_add_test(boost.version
+  SOURCES test_boost_version.cpp
   LIBRARIES gtest_main
-)
-
-gxy_add_test(googlemock
-  SOURCES test_googletest.cpp
-  LIBRARIES gmock_main
-)
-
-gxy_add_test(yaml-cpp
-  SOURCES test_yamlcpp.cpp
-  LIBRARIES
-    ${YAMLCPP_LIBRARY}
-    gtest_main
 )
 
