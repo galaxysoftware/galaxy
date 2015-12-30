@@ -8,6 +8,12 @@
 
 namespace gxy {
 
+namespace ast {
+
+class entity;
+
+} // namespace ast
+
 // An entity in the game.
 class entity
 {
@@ -20,6 +26,9 @@ public:
   std::string name;
   std::vector<component> components;
 };
+
+// Factory function to create one from an AST representation.
+auto make_entity(const ast::entity &) -> entity;
 
 } // namespace gxy
 

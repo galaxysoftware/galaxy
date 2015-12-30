@@ -1,5 +1,7 @@
 #include "game/entity.h"
 
+#include "config/ast/entity.h"
+
 #include <gtest/gtest.h>
 
 using namespace gxy;
@@ -61,3 +63,22 @@ TEST_F(Fixture, IsNotEqualDifferentComponents)
   ASSERT_TRUE(uut != entity("badger", components));
 }
 
+struct MakeEntityFixture : public ::testing::Test{};
+
+TEST_F(MakeEntityFixture, MakeEntity)
+{
+  using components::transform;
+
+  std::vector<ast::component> components{
+    ast::component_facade<transform>(
+      {glm::vec3(1, 2, 3), glm::vec3(4, 5, 6), glm::vec3(7, 8, 9)}, {})
+  };
+
+  ast::entity uut("badger", components);
+
+  std::vector<component> expected_components{
+    component_facade<transform>({glm::vec3(1, 2, 3), glm::vec3(4, 5, 6), glm::vec3(7, 8, 9)}, {})
+  };
+
+  ASSERT_EQ(entity("badger", expected_components), make_entity(uut));
+}
