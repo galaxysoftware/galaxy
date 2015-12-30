@@ -43,3 +43,17 @@ TEST_F(Fixture, MultipleEntities)
   ASSERT_EQ(expected, parse<ast::scene>(uut));
 }
 
+using FixtureDeathTest = Fixture;
+
+TEST_F(FixtureDeathTest, NoEntity)
+{
+  const auto uut(YAML::Load("badger: []"));
+  ASSERT_DEATH(parse<ast::scene>(uut), "");
+}
+
+TEST_F(FixtureDeathTest, EntityIsMap)
+{
+  const auto uut(YAML::Load("entities: {}"));
+  ASSERT_DEATH(parse<ast::scene>(uut), "");
+}
+

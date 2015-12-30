@@ -29,7 +29,12 @@ function(gxy_add_test TEST_NAME)
     set(TEST_COMMAND "${TEST_NAME}")
   endif()
 
-  add_test(NAME test.${TEST_NAME} COMMAND ${TEST_COMMAND})
+  if (CMAKE_BUILD_TYPE STREQUAL "Release")
+    # Skip death tests on release mode as assertions have been removed.
+    add_test(NAME test.${TEST_NAME} COMMAND ${TEST_COMMAND} --gtest_filer=-*DeathTest.*)
+  else()
+    add_test(NAME test.${TEST_NAME} COMMAND ${TEST_COMMAND})
+  endif()
 endfunction()
 
 # Sub-folders.
