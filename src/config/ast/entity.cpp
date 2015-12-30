@@ -1,4 +1,4 @@
-#include "load/ast/entity.h"
+#include "config/ast/entity.h"
 
 #include <yaml-cpp/yaml.h>
 

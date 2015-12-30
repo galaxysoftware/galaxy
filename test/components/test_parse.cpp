@@ -1,6 +1,6 @@
 #include "components/list.h"
 
-#include "load/parse.h"
+#include "config/parse.h"
 
 #include "utils/meta/apply.h"
 

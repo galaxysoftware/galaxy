@@ -1,4 +1,4 @@
-#include "load/yaml/vec3.h"
+#include "config/yaml/vec3.h"
 
 #include <gtest/gtest.h>
 

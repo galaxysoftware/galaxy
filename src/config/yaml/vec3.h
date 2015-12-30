@@ -1,5 +1,5 @@
-#ifndef LOAD_YAML_VEC3_H
-#define LOAD_YAML_VEC3_H
+#ifndef CONFIG_YAML_VEC3_H
+#define CONFIG_YAML_VEC3_H
 
 #include <glm/vec3.hpp>
 
@@ -32,4 +32,4 @@ auto convert<glm::vec3>::decode(const Node &node, glm::vec3 &vec) -> bool
 
 } // namespace YAML
 
-#endif // LOAD_YAML_VEC3_H
+#endif // CONFIG_YAML_VEC3_H

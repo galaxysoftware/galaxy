@@ -1,9 +1,9 @@
-#ifndef LOAD_AST_ENTITY_H
-#define LOAD_AST_ENTITY_H
+#ifndef CONFIG_AST_ENTITY_H
+#define CONFIG_AST_ENTITY_H
 
-#include "load/ast/component.h"
+#include "config/ast/component.h"
 
-#include "load/parse.h"
+#include "config/parse.h"
 
 #include <string>
 #include <vector>
@@ -32,5 +32,5 @@ auto parse<ast::entity>(const YAML::Node &) -> ast::entity;
 
 } // namespace gxy
 
-#endif // LOAD_AST_ENTITY_H
+#endif // CONFIG_AST_ENTITY_H
 

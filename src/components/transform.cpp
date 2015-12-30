@@ -1,6 +1,6 @@
 #include "components/transform.h"
 
-#include "load/yaml/vec3.h"
+#include "config/yaml/vec3.h"
 
 #include <yaml-cpp/yaml.h>
 

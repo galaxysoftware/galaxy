@@ -1,4 +1,4 @@
-#include "load/ast/component.h"
+#include "config/ast/component.h"
 
 #include <yaml-cpp/yaml.h>
 

@@ -1,9 +1,9 @@
-#ifndef AST_COMPONENT_H
-#define AST_COMPONENT_H
+#ifndef CONFIG_AST_COMPONENT_H
+#define CONFIG_AST_COMPONENT_H
 
 #include "components/list.h"
 
-#include "load/parse.h"
+#include "config/parse.h"
 
 #include "utils/meta/apply.h"
 #include "utils/meta/transform.h"
@@ -67,5 +67,5 @@ auto parse<std::vector<ast::component>>(const YAML::Node &) -> std::vector<ast::
 
 } // namespace gxy
 
-#endif // AST_COMPONENT_H
+#endif // CONFIG_AST_COMPONENT_H
 

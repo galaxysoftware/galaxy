@@ -1,5 +1,5 @@
-#ifndef LOAD_PARSE_H
-#define LOAD_PARSE_H
+#ifndef CONFIG_PARSE_H
+#define CONFIG_PARSE_H
 
 namespace YAML {
 
@@ -15,5 +15,5 @@ auto parse(const YAML::Node &) -> T;
 
 } // namespace gxy
 
-#endif // LOAD_PARSE_H
+#endif // CONFIG_PARSE_H
 

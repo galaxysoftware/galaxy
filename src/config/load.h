@@ -1,5 +1,5 @@
-#ifndef LOAD_H
-#define LOAD_H
+#ifndef CONFIG_LOAD_H
+#define CONFIG_LOAD_H
 
 #include "ast/entity.h"
 
@@ -15,5 +15,5 @@ auto load(const boost::filesystem::path &config)
 
 } // namespace gxy
 
-#endif // LOAD_H
+#endif // CONFIG_LOAD_H
 

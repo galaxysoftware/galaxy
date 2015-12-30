@@ -1,10 +1,10 @@
 # Unit tests for loading a config.
-gxy_add_test(load.load
+gxy_add_test(config.load
   SOURCES
     test_load.cpp
-    ${CMAKE_SOURCE_DIR}/src/load/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/load/ast/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/load/load.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/load.cpp
     ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
     ${CMAKE_SOURCE_DIR}/src/utils/scoped_directory.cpp
   LIBRARIES

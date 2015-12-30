@@ -4,7 +4,7 @@
 #include "components/empty_data.h"
 #include "components/name.h"
 
-#include "load/parse.h"
+#include "config/parse.h"
 
 #include <glm/vec3.hpp>
 
