@@ -14,13 +14,18 @@ template <>
 auto expected<components::transform> = "transform";
 
 template <typename T>
-struct fixture : public ::testing::Test{};
+struct Fixture : public ::testing::Test{};
 
 using types = meta::apply_t<::testing::Types, components::list>;
 
-TYPED_TEST_CASE(fixture, types);
+TYPED_TEST_CASE(Fixture, types);
 
-TYPED_TEST(fixture, component_name)
+TYPED_TEST(Fixture, ComponentNameType)
+{
+  ASSERT_TRUE((std::is_same<TypeParam, std::string>{}));
+}
+
+TYPED_TEST(Fixture, ComponentName)
 {
   ASSERT_EQ(expected<TypeParam>, components::name<TypeParam>);
 }
