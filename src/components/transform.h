@@ -32,7 +32,7 @@ public:
 
 // Name of node.
 template <>
-static auto name<transform> = "transform";
+static std::string name<transform> = "transform";
 
 } // namespace components
 
