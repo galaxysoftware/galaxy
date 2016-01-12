@@ -22,3 +22,17 @@ gxy_add_test(game.entity
     ${YAMLCPP_LIBRARY}
 )
 
+gxy_add_test(game.scene
+  SOURCES
+    test_entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
+    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/game/component.cpp
+    ${CMAKE_SOURCE_DIR}/src/game/entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/game/scene.cpp
+  LIBRARIES
+    gtest_main
+    ${YAMLCPP_LIBRARY}
+)
+
