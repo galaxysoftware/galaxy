@@ -1,0 +1,97 @@
+what do i need?
+  - config parser
+    - load config file (yaml-cpp),
+    - return ecs ast.
+
+  - entity builder
+    - block out each component data in memory grouped by type,
+    - create forest of game objects,
+    - creates polymap of components.
+
+  - system runner
+    - call each tick method,
+    - copy new data over old,
+    - loop.
+
+what is an entity?
+  - a list of components,
+  - stored in a tree.
+
+what is a component?
+  - a name,
+  - two structs:
+    - data (must be copy assignable),
+    - const_data.
+  - owns two data's (current and next) and one const_data.
+
+what is a system?
+  - a registered function, for eg. update()
+  - called for each component that has an overload for it.
+
+required systems:
+  - update,
+  - render,
+  - copy_data,
+
+required components:
+  - transform,
+  - background (block colour glClear),
+  - text.
+
+in haskell speak:
+  game conf = run . build . load
+  game "my_game.yml"
+
+vitally important: "think small get something working."
+
+order of attack:
+  0. set-up repo,
+    a. libraries:
+      i. cmake, ctest,
+      ii. gtest,
+      iii. boost,
+      iv. yaml-cpp
+      v. glfw, glxw
+    b. directory structure:
+      src/
+        game/
+          run/
+          build/
+          load/
+        entity/
+        component/
+        system/
+      test/
+    c. travis
+
+  1. build transform component data,
+  2. component typelist,
+  3. build entity ast object,
+
+  4. config parser
+    a. add parse() overload to transform + background,
+    b. build ast out of entity + components
+
+  4c. load() function, from config-file -> std::vector<entity>
+
+  5. build real entity object (two data's).
+  6. take ast
+      a. allocate components,
+    b. build entity vector.
+    c. build required system list
+
+  7. build background component (inc. render + update system support)
+  8. for each system
+    a. loop through components
+    b. call system function
+
+  9. text component
+
+  10. keyboard input component
+    -> display pressed keys on screen.
+  11. mouse input component
+    -> display mouse coords.
+
+
+  extras:
+    make dummy yaml data for each component automatically. use in test_component test (at least).
