@@ -43,6 +43,7 @@ add_subdirectory(config/ast)
 add_subdirectory(config/yaml)
 add_subdirectory(game)
 add_subdirectory(components)
+add_subdirectory(components/utils)
 add_subdirectory(utils)
 add_subdirectory(utils/meta)
 

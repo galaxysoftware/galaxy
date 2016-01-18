@@ -1,8 +1,9 @@
 #ifndef COMPONENT_TRANSFORM_H
 #define COMPONENT_TRANSFORM_H
 
-#include "components/empty_data.h"
 #include "components/name.h"
+
+#include "components/utils/empty_data.h"
 
 #include "config/parse.h"
 

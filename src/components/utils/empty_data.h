@@ -1,5 +1,5 @@
-#ifndef COMPONENT_EMPTY_DATA_H
-#define COMPONENT_EMPTY_DATA_H
+#ifndef COMPONENT_UTILS_EMPTY_DATA_H
+#define COMPONENT_UTILS_EMPTY_DATA_H
 
 namespace gxy {
 namespace components {
@@ -28,5 +28,5 @@ auto operator!=(const empty_data &, const empty_data &) -> bool
 } // namespace components
 } // namespace gxy
 
-#endif // COMPONENT_EMPTY_DATA_H
+#endif // COMPONENT_UTILS_EMPTY_DATA_H
 

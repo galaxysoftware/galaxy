@@ -1,14 +1,4 @@
 # Unit tests for components.
-gxy_add_test(components.empty_data
-  SOURCES test_empty_data.cpp
-  LIBRARIES gtest_main
-)
-
-gxy_add_test(components.for_each
-  SOURCES test_for_each.cpp
-  LIBRARIES gtest_main
-)
-
 gxy_add_test(components.name
   SOURCES test_name.cpp
   LIBRARIES gtest_main

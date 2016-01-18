@@ -1,5 +1,5 @@
-#ifndef COMPONENTS_FOR_EACH_H
-#define COMPONENTS_FOR_EACH_H
+#ifndef COMPONENTS_UTILS_FOR_EACH_H
+#define COMPONENTS_UTILS_FOR_EACH_H
 
 #include "components/list.h"
 
@@ -33,5 +33,5 @@ auto for_each(Fn &&fn) -> void
 
 } // namespace gxy::components
 
-#endif // COMPONENTS_FOR_EACH_H
+#endif // COMPONENTS_UTILS_FOR_EACH_H
 
