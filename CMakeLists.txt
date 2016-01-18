@@ -51,6 +51,7 @@ add_compiler_flag(CXX
   CLANG
     -std=c++1z
 #    -fno-rtti
+    -fdiagnostics-color=always
     -Werror
     -Wall
     -Wextra
