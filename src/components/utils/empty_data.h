@@ -1,6 +1,8 @@
 #ifndef COMPONENT_UTILS_EMPTY_DATA_H
 #define COMPONENT_UTILS_EMPTY_DATA_H
 
+#include "config/parse.h"
+
 namespace gxy {
 namespace components {
 
@@ -26,6 +28,12 @@ auto operator!=(const empty_data &, const empty_data &) -> bool
 }
 
 } // namespace components
+
+// Transform a YAML node into component empty data.
+template <>
+auto parse<components::empty_data>(const YAML::Node &)
+  -> components::empty_data;
+
 } // namespace gxy
 
 #endif // COMPONENT_UTILS_EMPTY_DATA_H

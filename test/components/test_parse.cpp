@@ -18,6 +18,15 @@ template <typename T>
 auto expected() -> T;
 
 template <>
+auto uut<empty_data> = YAML::Load("{}");
+
+template <>
+auto expected<empty_data>() -> empty_data
+{
+  return {};
+}
+
+template <>
 auto uut<transform::data> = YAML::Load("{ translate: [1, 2, 3], rotate: [4, 5, 6], scale: [7, 8, 9] }");
 
 template <>
@@ -27,12 +36,12 @@ auto expected<transform::data>() -> transform::data
 }
 
 template <>
-auto uut<transform::const_data> = YAML::Load("{}");
+auto uut<background::const_data> = YAML::Load("{ colour: [1, 2, 3] }");
 
 template <>
-auto expected<transform::const_data>() -> transform::const_data
+auto expected<background::const_data>() -> background::const_data
 {
-  return {};
+  return { glm::vec3(1, 2, 3) };
 }
 
 template <typename T>

@@ -3,6 +3,7 @@ gxy_add_test(game.component
   SOURCES
     test_component.cpp
     ${CMAKE_SOURCE_DIR}/src/game/component.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/background.cpp
     ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
   LIBRARIES
     gtest_main
@@ -12,7 +13,9 @@ gxy_add_test(game.component
 gxy_add_test(game.entity
   SOURCES
     test_entity.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/background.cpp
     ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/utils/empty_data.cpp
     ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
     ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
     ${CMAKE_SOURCE_DIR}/src/game/component.cpp
@@ -24,8 +27,10 @@ gxy_add_test(game.entity
 
 gxy_add_test(game.scene
   SOURCES
-    test_entity.cpp
+    test_scene.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/background.cpp
     ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/utils/empty_data.cpp
     ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
     ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
     ${CMAKE_SOURCE_DIR}/src/game/component.cpp
@@ -43,7 +48,9 @@ gxy_add_test(game.load
     ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
     ${CMAKE_SOURCE_DIR}/src/config/ast/scene.cpp
     ${CMAKE_SOURCE_DIR}/src/config/load.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/background.cpp
     ${CMAKE_SOURCE_DIR}/src/components/transform.cpp
+    ${CMAKE_SOURCE_DIR}/src/components/utils/empty_data.cpp
     ${CMAKE_SOURCE_DIR}/src/game/component.cpp
     ${CMAKE_SOURCE_DIR}/src/game/entity.cpp
     ${CMAKE_SOURCE_DIR}/src/game/scene.cpp

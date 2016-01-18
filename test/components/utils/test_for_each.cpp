@@ -17,6 +17,6 @@ TEST_F(fixture, for_each_name)
     ss << components::name<type> << std::endl;
   });
 
-  ASSERT_EQ("transform\n", ss.str());
+  ASSERT_EQ("background\ntransform\n", ss.str());
 }
 

@@ -13,6 +13,9 @@ std::string expected;
 template <>
 auto expected<components::transform> = "transform";
 
+template <>
+auto expected<components::background> = "background";
+
 template <typename T>
 struct Fixture : public ::testing::Test{};
 

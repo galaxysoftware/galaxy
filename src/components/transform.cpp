@@ -42,13 +42,5 @@ auto parse<components::transform::data>(const YAML::Node &node)
   };
 }
 
-template <>
-auto parse<components::transform::const_data>(const YAML::Node &node)
-  -> components::transform::const_data
-{
-  assert(node.size() == 0);
-  return {};
-}
-
 } // namespace gxy
 

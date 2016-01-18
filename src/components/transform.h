@@ -42,10 +42,6 @@ template <>
 auto parse<components::transform::data>(const YAML::Node &)
   -> components::transform::data;
 
-template <>
-auto parse<components::transform::const_data>(const YAML::Node &)
-  -> components::transform::const_data;
-
 } // namespace gxy
 
 #endif // COMPONENT_TRANSFORM_H
