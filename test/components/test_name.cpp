@@ -22,7 +22,9 @@ TYPED_TEST_CASE(Fixture, types);
 
 TYPED_TEST(Fixture, ComponentNameType)
 {
-  ASSERT_TRUE((std::is_same<TypeParam, std::string>{}));
+  using components::name;
+
+  ASSERT_TRUE((std::is_same<decltype(name<TypeParam>), std::string>{}));
 }
 
 TYPED_TEST(Fixture, ComponentName)

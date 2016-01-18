@@ -50,7 +50,7 @@ include_directories(SYSTEM
 add_compiler_flag(CXX
   CLANG
     -std=c++1z
-    -fno-rtti
+#    -fno-rtti
     -Werror
     -Wall
     -Wextra
