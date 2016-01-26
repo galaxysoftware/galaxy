@@ -17,9 +17,9 @@ matrix:
 
   include:
     ##########################################################################
-    # Clang 3.7, Boost 1.59, Debug
+    # Clang 3.7, Boost 1.60, Debug
     ##########################################################################
-    - env: COMPILER=clang++-3.7 BOOST_VERSION=1.59.0 BUILD_TYPE="Debug"
+    - env: COMPILER=clang++-3.7 BOOST_VERSION=1.60.0 BUILD_TYPE="Debug"
       addons: &packages
         apt:
           packages: ["clang-3.7", "valgrind", "xorg-dev", "libglu1-mesa-dev"]
@@ -29,15 +29,15 @@ matrix:
             - llvm-toolchain-precise
 
     ##########################################################################
-    # Clang 3.7, Boost 1.59, Release
+    # Clang 3.7, Boost 1.60, Release
     ##########################################################################
-    - env: COMPILER=clang++-3.7 BOOST_VERSION=1.59.0 BUILD_TYPE="Release"
+    - env: COMPILER=clang++-3.7 BOOST_VERSION=1.60.0 BUILD_TYPE="Release"
       addons: *packages
 
     ##########################################################################
-    # Clang 3.7, Boost 1.59, Release, Valgrind
+    # Clang 3.7, Boost 1.60, Release, Valgrind
     ##########################################################################
-    - env: COMPILER=clang++-3.7 BOOST_VERSION=1.59.0 BUILD_TYPE="Release" VALGRIND=true
+    - env: COMPILER=clang++-3.7 BOOST_VERSION=1.60.0 BUILD_TYPE="Release" VALGRIND=true
       addons: *packages
 
 install:
@@ -84,7 +84,7 @@ install:
   ############################################################################
   # Install Boost headers
   ############################################################################
-  - if [[ "${BOOST_VERSION}" == "1.59.0" ]]; then BOOST_URL="http://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz"; fi
+  - if [[ "${BOOST_VERSION}" == "1.60.0" ]]; then BOOST_URL="http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz"; fi
   - if [[ "${BOOST_URL}" != "" ]]; then mkdir boost && travis_retry wget --quiet -O - ${BOOST_URL} | tar --strip-components=1 -xz -C boost; fi
   - CMAKE_OPTIONS+=" -DBOOST_ROOT=${DEPS_DIR}/boost"
 

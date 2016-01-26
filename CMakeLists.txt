@@ -22,7 +22,7 @@ include(AddCompilerFlag)
 include(CreateSyntasticConfig)
 
 # Required packages.
-find_package(Boost 1.59 REQUIRED COMPONENTS system filesystem)
+find_package(Boost 1.60 REQUIRED COMPONENTS system filesystem)
 find_package(YamlCpp REQUIRED)
 
 if (GXY_ENABLE_VALGRIND)
