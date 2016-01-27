@@ -17,3 +17,10 @@ gxy_add_test(utils.scoped_directory
     gtest_main
 )
 
+gxy_add_test(utils.throw_if
+  SOURCES
+    test_throw_if.cpp
+  LIBRARIES
+    gtest_main
+)
+
