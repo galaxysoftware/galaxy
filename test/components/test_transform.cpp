@@ -26,57 +26,57 @@ struct Fixture : public testing::Test
   transform::data uut{translate1, rotate1, scale1};
 };
 
-TEST_F(Fixture, translate)
+TEST_F(Fixture, Translate)
 {
   ASSERT_EQ(translate1, uut.translate);
 }
 
-TEST_F(Fixture, rotate)
+TEST_F(Fixture, Rotate)
 {
   ASSERT_EQ(rotate1, uut.rotate);
 }
 
-TEST_F(Fixture, scale)
+TEST_F(Fixture, Scale)
 {
   ASSERT_EQ(scale1, uut.scale);
 }
 
-TEST_F(Fixture, is_equal_self)
+TEST_F(Fixture, IsEqualSelf)
 {
   ASSERT_TRUE(transform::data(translate1, rotate1, scale1) == uut);
 }
 
-TEST_F(Fixture, not_not_equal_self)
+TEST_F(Fixture, NotNotEqualSelf)
 {
   ASSERT_FALSE(transform::data(translate1, rotate1, scale1) != uut);
 }
 
-TEST_F(Fixture, not_equal_different_translate)
+TEST_F(Fixture, NotEqualDifferentTranslate)
 {
   ASSERT_FALSE(transform::data(translate2, rotate1, scale1) == uut);
 }
 
-TEST_F(Fixture, is_not_equal_different_translate)
+TEST_F(Fixture, IsNotEqualDifferentTranslate)
 {
   ASSERT_TRUE(transform::data(translate2, rotate1, scale1) != uut);
 }
 
-TEST_F(Fixture, not_equal_different_rotate)
+TEST_F(Fixture, NotEqualDifferentRotate)
 {
   ASSERT_FALSE(transform::data(translate1, rotate2, scale1) == uut);
 }
 
-TEST_F(Fixture, is_not_equal_different_rotate)
+TEST_F(Fixture, IsNotEqualDifferentRotate)
 {
   ASSERT_TRUE(transform::data(translate1, rotate2, scale1) != uut);
 }
 
-TEST_F(Fixture, not_equal_different_scale)
+TEST_F(Fixture, NotEqualDifferentScale)
 {
   ASSERT_FALSE(transform::data(translate1, rotate1, scale2) == uut);
 }
 
-TEST_F(Fixture, is_not_equal_different_scale)
+TEST_F(Fixture, IsNotEqualDifferentScale)
 {
   ASSERT_TRUE(transform::data(translate1, rotate1, scale2) != uut);
 }
@@ -112,7 +112,8 @@ auto ParseFixture<transform::data>::invalid_cases()
 
     YAML::Load("{ translate: [1, 2, 3], rotate: [4, 5, 6], scale: [7, 8, 9], time: 4 }"),
 
-    YAML::Load("[ translate, rotate, scale ]")
+    YAML::Load("[ translate, rotate, scale ]"),
+    YAML::Load("42")
   };
 }
 
