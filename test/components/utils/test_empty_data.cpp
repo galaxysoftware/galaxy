@@ -1,5 +1,7 @@
 #include "components/utils/empty_data.h"
 
+#include "components/parse_fixture.h"
+
 #include <gtest/gtest.h>
 
 #include <yaml-cpp/yaml.h>
@@ -21,9 +23,26 @@ TEST_F(Fixture, NotNotEqualEmptyData)
   ASSERT_FALSE(uut != components::empty_data());
 }
 
-TEST_F(Fixture, ParseEmptyMap)
+template <>
+auto ParseFixture<components::empty_data>::valid_cases()
+  -> valid_cases_type
 {
-  const auto yaml(YAML::Load("{}"));
-  ASSERT_EQ(uut, parse<components::empty_data>(yaml));
+  return {
+    std::make_pair(YAML::Load("{}"), components::empty_data{})
+  };
 }
+
+template <>
+auto ParseFixture<components::empty_data>::invalid_cases()
+  -> invalid_cases_type
+{
+  return {
+    YAML::Load("1"),
+    YAML::Load("[]"),
+    YAML::Load("[0]"),
+    YAML::Load("{ a: 0 }")
+  };
+}
+
+INSTANTIATE_TYPED_TEST_CASE_P(EmptyData, ParseFixture, components::empty_data);
 

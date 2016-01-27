@@ -90,8 +90,8 @@ auto NameFixture<transform>::expected() -> std::string
 INSTANTIATE_TYPED_TEST_CASE_P(Transform, NameFixture, transform);
 
 template<>
-auto ParseFixture<transform>::valid_data_cases()
-  -> valid_cases<transform::data>
+auto ParseFixture<transform::data>::valid_cases()
+  -> valid_cases_type
 {
   return {
     std::make_pair(
@@ -102,8 +102,8 @@ auto ParseFixture<transform>::valid_data_cases()
 }
 
 template <>
-auto ParseFixture<transform>::invalid_data_cases()
-  -> invalid_cases<transform::data>
+auto ParseFixture<transform::data>::invalid_cases()
+  -> invalid_cases_type
 {
   return {
     YAML::Load("{ translate: [1, 2, 3], rotate: [4, 5, 6] }"),
@@ -116,26 +116,5 @@ auto ParseFixture<transform>::invalid_data_cases()
   };
 }
 
-template <>
-auto ParseFixture<transform>::valid_const_data_cases()
-  -> valid_cases<transform::const_data>
-{
-  return {
-    std::make_pair(YAML::Load("{}"), components::empty_data())
-  };
-}
-
-template <>
-auto ParseFixture<transform>::invalid_const_data_cases()
-  -> invalid_cases<transform::const_data>
-{
-  return {
-    YAML::Load("1"),
-    YAML::Load("[]"),
-    YAML::Load("[0]"),
-    YAML::Load("{ a: 0 }")
-  };
-}
-
-INSTANTIATE_TYPED_TEST_CASE_P(Transform, ParseFixture, transform);
+INSTANTIATE_TYPED_TEST_CASE_P(Transform, ParseFixture, transform::data);
 
