@@ -1,4 +1,4 @@
-#include "components/background.h"
+#include "component/background.h"
 
 #include "config/yaml/vec3.h"
 

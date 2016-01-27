@@ -1,4 +1,4 @@
-#include "components/utils/empty_data.h"
+#include "component/utils/empty_data.h"
 
 #include "config/parse_error.h"
 

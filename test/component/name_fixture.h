@@ -1,7 +1,7 @@
 #ifndef TEST_COMPONENTS_NAME_FIXTURE_H
 #define TEST_COMPONENTS_NAME_FIXTURE_H
 
-#include "components/name.h"
+#include "component/name.h"
 
 #include <gtest/gtest.h>
 

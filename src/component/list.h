@@ -1,8 +1,8 @@
 #ifndef COMPONENT_COMPONENT_H
 #define COMPONENT_COMPONENT_H
 
-#include "components/background.h"
-#include "components/transform.h"
+#include "component/background.h"
+#include "component/transform.h"
 
 #include "utils/meta/typelist.h"
 

@@ -1,7 +1,7 @@
 #ifndef CONFIG_AST_COMPONENT_H
 #define CONFIG_AST_COMPONENT_H
 
-#include "components/list.h"
+#include "component/list.h"
 
 #include "config/parse.h"
 

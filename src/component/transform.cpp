@@ -1,4 +1,4 @@
-#include "components/transform.h"
+#include "component/transform.h"
 
 #include "config/yaml/vec3.h"
 

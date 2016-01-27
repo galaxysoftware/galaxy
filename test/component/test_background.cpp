@@ -1,7 +1,7 @@
-#include "components/background.h"
+#include "component/background.h"
 
-#include "components/name_fixture.h"
-#include "components/parse_fixture.h"
+#include "component/name_fixture.h"
+#include "component/parse_fixture.h"
 
 #include <gtest/gtest.h>
 

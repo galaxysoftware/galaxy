@@ -1,7 +1,7 @@
 #ifndef COMPONENTS_UTILS_FOR_EACH_H
 #define COMPONENTS_UTILS_FOR_EACH_H
 
-#include "components/list.h"
+#include "component/list.h"
 
 #include "utils/box.h"
 

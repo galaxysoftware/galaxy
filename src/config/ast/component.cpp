@@ -1,6 +1,6 @@
 #include "config/ast/component.h"
 
-#include "components/utils/for_each.h"
+#include "component/utils/for_each.h"
 
 #include <yaml-cpp/yaml.h>
 

@@ -1,7 +1,7 @@
 #ifndef GAME_COMPONENT_H
 #define GAME_COMPONENT_H
 
-#include "components/list.h"
+#include "component/list.h"
 
 #include "config/ast/component.h"
 

@@ -1,6 +1,6 @@
-#include "components/utils/empty_data.h"
+#include "component/utils/empty_data.h"
 
-#include "components/parse_fixture.h"
+#include "component/parse_fixture.h"
 
 #include <gtest/gtest.h>
 

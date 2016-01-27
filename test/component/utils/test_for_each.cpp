@@ -1,6 +1,6 @@
-#include "components/utils/for_each.h"
+#include "component/utils/for_each.h"
 
-#include "components/name.h"
+#include "component/name.h"
 
 #include <gtest/gtest.h>
 
