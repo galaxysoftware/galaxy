@@ -1,6 +1,7 @@
 #include "components/transform.h"
 
 #include "components/name_fixture.h"
+#include "components/parse_fixture.h"
 
 #include <gtest/gtest.h>
 
@@ -11,7 +12,7 @@ using components::transform;
 // Transform has no const_data.
 static_assert(std::is_same<components::empty_data, transform::const_data>{});
 
-struct Fixture : public ::testing::Test
+struct Fixture : public testing::Test
 {
   glm::vec3 translate1{10, 11, 12};
   glm::vec3 translate2{13, 14, 15};
@@ -81,10 +82,60 @@ TEST_F(Fixture, is_not_equal_different_scale)
 }
 
 template <>
-auto NameFixture<transform>::expected() const -> std::string
+auto NameFixture<transform>::expected() -> std::string
 {
   return "transform";
 }
 
 INSTANTIATE_TYPED_TEST_CASE_P(Transform, NameFixture, transform);
+
+template<>
+auto ParseFixture<transform>::valid_data_cases()
+  -> valid_cases<transform::data>
+{
+  return {
+    std::make_pair(
+      YAML::Load("{ translate: [1, 2, 3], rotate: [4, 5, 6], scale: [7, 8, 9] }"),
+      transform::data{ glm::vec3(1, 2, 3), glm::vec3(4, 5, 6), glm::vec3(7, 8, 9) }
+    )
+  };
+}
+
+template <>
+auto ParseFixture<transform>::invalid_data_cases()
+  -> invalid_cases<transform::data>
+{
+  return {
+    YAML::Load("{ translate: [1, 2, 3], rotate: [4, 5, 6] }"),
+    YAML::Load("{ translate: [1, 2, 3], scale: [4, 5, 6] }"),
+    YAML::Load("{ rotate: [1, 2, 3], scale: [4, 5, 6] }"),
+
+    YAML::Load("{ translate: [1, 2, 3], rotate: [4, 5, 6], scale: [7, 8, 9], time: 4 }"),
+
+    YAML::Load("[ translate, rotate, scale ]")
+  };
+}
+
+template <>
+auto ParseFixture<transform>::valid_const_data_cases()
+  -> valid_cases<transform::const_data>
+{
+  return {
+    std::make_pair(YAML::Load("{}"), components::empty_data())
+  };
+}
+
+template <>
+auto ParseFixture<transform>::invalid_const_data_cases()
+  -> invalid_cases<transform::const_data>
+{
+  return {
+    YAML::Load("1"),
+    YAML::Load("[]"),
+    YAML::Load("[0]"),
+    YAML::Load("{ a: 0 }")
+  };
+}
+
+INSTANTIATE_TYPED_TEST_CASE_P(Transform, ParseFixture, transform);
 

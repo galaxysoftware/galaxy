@@ -2,6 +2,10 @@
 
 #include "config/yaml/vec3.h"
 
+#include "config/parse_error.h"
+
+#include "utils/throw_if.h"
+
 #include <yaml-cpp/yaml.h>
 
 namespace gxy {
@@ -32,8 +36,8 @@ template <>
 auto parse<components::transform::data>(const YAML::Node &node)
   -> components::transform::data
 {
-  assert(node.IsMap());
-  assert(node.size() == 3);
+  throw_if<parse_error>(! node.IsMap());
+  throw_if<parse_error>(node.size() != 3);
 
   return {
     node["translate"].as<glm::vec3>(),

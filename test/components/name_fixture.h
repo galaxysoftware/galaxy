@@ -10,8 +10,8 @@ namespace gxy {
 template <typename Component>
 class NameFixture : public testing::Test
 {
-public:
-  auto expected() const -> std::string;
+protected:
+  static auto expected() -> std::string;
 };
 
 TYPED_TEST_CASE_P(NameFixture);
