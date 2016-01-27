@@ -17,3 +17,10 @@ gxy_add_test(config.load
     gtest_main
 )
 
+gxy_add_test(config.parse_error
+  SOURCES
+    test_parse_error.cpp
+  LIBRARIES
+    gtest_main
+)
+
