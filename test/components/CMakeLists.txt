@@ -1,9 +1,4 @@
 # Unit tests for components.
-gxy_add_test(components.name
-  SOURCES test_name.cpp
-  LIBRARIES gtest_main
-)
-
 gxy_add_test(components.parse
   SOURCES
     test_parse.cpp

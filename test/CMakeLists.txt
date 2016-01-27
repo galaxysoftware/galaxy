@@ -21,6 +21,7 @@ function(gxy_add_test TEST_NAME)
 
   add_executable(${TEST_NAME} ${TEST_SOURCES})
   add_dependencies(check ${TEST_NAME})
+  target_include_directories(${TEST_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/test)
   target_link_libraries(${TEST_NAME} ${TEST_LIBRARIES})
 
   if (GXY_ENABLE_VALGRIND)
