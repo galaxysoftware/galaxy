@@ -33,8 +33,11 @@ if (GXY_ENABLE_VALGRIND)
   find_package(Valgrind REQUIRED)
 endif()
 
+# Unix specific dependencies.
 set(GLXW_LIBRARY "")
 if(UNIX AND NOT APPLE)
+  find_package(Xinerama REQUIRED)
+
   add_subdirectory(ext/glxw)
   set(GLXW_LIBRARY "glxw")
 endif()
@@ -57,6 +60,7 @@ include_directories(SYSTEM
   ${Boost_INCLUDE_DIRS}
   ${GLFW_INCLUDE_PATH}
   ${OPENGL_INCLUDE_DIR}
+  ${XINERAMA_INCLUDE_DIRS}
   ${YAMLCPP_INCLUDE_DIR}
 )
 
