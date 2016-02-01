@@ -23,9 +23,9 @@ matrix:
       addons: &packages
         apt:
           packages:
-            - clang-3.7,
-            - valgrind,
-            - xorg-dev,
+            - clang-3.7
+            - valgrind
+            - xorg-dev
             - libglu1-mesa-dev
             - libXxf86vm-dev
             - libxinerama-dev
