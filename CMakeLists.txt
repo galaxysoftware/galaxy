@@ -23,16 +23,17 @@ include(CreateSyntasticConfig)
 
 # Required packages.
 find_package(Boost 1.60 REQUIRED COMPONENTS system filesystem)
+find_package(OpenGL REQUIRED)
 find_package(YamlCpp REQUIRED)
 
 if (GXY_ENABLE_VALGRIND)
   find_package(Valgrind REQUIRED)
 endif()
 
-set(GLXW_LIBRARIES "")
+set(GLXW_LIBRARY "")
 if(UNIX AND NOT APPLE)
   add_subdirectory(ext/glxw)
-  set(GLXW_LIBRARIES "glxw;dl")
+  set(GLXW_LIBRARY "glxw")
 endif()
 
 # Include path for project headers.
@@ -51,6 +52,7 @@ include_directories(SYSTEM
   ${CMAKE_CURRENT_BINARY_DIR}/ext/glxw/include
 
   ${Boost_INCLUDE_DIRS}
+  ${OPENGL_INCLUDE_DIR}
   ${YAMLCPP_INCLUDE_DIR}
 )
 

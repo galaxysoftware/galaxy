@@ -58,7 +58,8 @@ if(UNIX AND NOT APPLE)
   gxy_add_test(glxw.init
     SOURCES test_glxw.cpp
     LIBRARIES
-      ${GLXW_LIBRARIES}
+      ${OPENGL_LIBRARIES}
+      ${GLXW_LIBRARY}
       gtest_main
   )
 endif()
