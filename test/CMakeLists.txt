@@ -67,7 +67,9 @@ endif()
 gxy_add_test(glfw
   SOURCES test_glfw.cpp
   LIBRARIES
+    ${OPENGL_LIBRARIES}
     ${GLFW_LIBRARY}
+    ${GLXW_LIBRARY}
     gtest_main
 )
 
