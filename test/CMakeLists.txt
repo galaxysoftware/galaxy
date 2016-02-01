@@ -54,3 +54,12 @@ gxy_add_test(boost.version
   LIBRARIES gtest_main
 )
 
+if(UNIX AND NOT APPLE)
+  gxy_add_test(glxw.init
+    SOURCES test_glxw.cpp
+    LIBRARIES
+      ${GLXW_LIBRARY}
+      gtest_main
+  )
+endif()
+
