@@ -22,7 +22,7 @@ matrix:
     - env: COMPILER=clang++-3.7 BOOST_VERSION=1.60.0 BUILD_TYPE="Debug"
       addons: &packages
         apt:
-          packages: ["clang-3.7", "valgrind", "xorg-dev", "libglu1-mesa-dev", "glfw-dev"]
+          packages: ["clang-3.7", "valgrind", "xorg-dev", "libglu1-mesa-dev", "libglfw-dev"]
           sources:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-precise-3.7
@@ -98,7 +98,7 @@ install:
   ############################################################################
   - |
     git clone https://github.com/galaxysoftware/yaml-cpp
-    (cd yaml-cpp && git checkout release-0.5.2 && cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX= -DBOOST_ROOT=${DEPS_DIR}/boost . && make -j2 && make DESTDIR=$(pwd) install)
+    (cd yaml-cpp && git checkout release-0.5.2 && cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX= -DBOOST_ROOT=${DEPS_DIR}/boost . && make -j2 yaml-cpp && make DESTDIR=$(pwd) install)
     CMAKE_OPTIONS+=" -DYAMLCPP_DIR=${DEPS_DIR}/yaml-cpp"
 
 before_script:
