@@ -1,6 +1,8 @@
 # Setup Project.
 cmake_minimum_required(VERSION 3.0)
 project(galaxy CXX)
+enable_language(C)
+
 message("Begin project galaxy.")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
