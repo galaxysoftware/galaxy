@@ -64,3 +64,10 @@ if(UNIX AND NOT APPLE)
   )
 endif()
 
+gxy_add_test(glfw
+  SOURCES test_glfw.cpp
+  LIBRARIES
+    ${GLFW_LIBRARY}
+    gtest_main
+)
+

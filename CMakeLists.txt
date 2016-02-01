@@ -23,6 +23,7 @@ include(CreateSyntasticConfig)
 
 # Required packages.
 find_package(Boost 1.60 REQUIRED COMPONENTS system filesystem)
+find_package(GLFW REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(YamlCpp REQUIRED)
 
@@ -52,8 +53,14 @@ include_directories(SYSTEM
   ${CMAKE_CURRENT_BINARY_DIR}/ext/glxw/include
 
   ${Boost_INCLUDE_DIRS}
+  ${GLFW_INCLUDE_PATH}
   ${OPENGL_INCLUDE_DIR}
   ${YAMLCPP_INCLUDE_DIR}
+)
+
+# Global preprocessor definitions.
+add_definitions(
+  -DGLFW_INCLUDE_GLCOREARB
 )
 
 # Compiler flags.
