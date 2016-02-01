@@ -108,7 +108,7 @@ install:
   - |
     git clone https://github.com/galaxysoftware/glfw
     (cd glfw && git checkout 3.1.2 && cmake . && make -j2 && make DESTDIR=$(pwd) install)
-    CMAKE_OPTIONS+=" -DGLFW_LOCATION=${DEPS_DIR}/glfw/user/local"
+    CMAKE_OPTIONS+=" -DGLFW_LOCATION=${DEPS_DIR}/glfw/usr/local"
 
 before_script:
   ############################################################################
