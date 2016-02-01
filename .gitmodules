@@ -10,3 +10,6 @@
 [submodule "ext/eggs-variant"]
 	path = ext/eggs-variant
 	url = https://github.com/galaxysoftware/variant
+[submodule "ext/glxw"]
+	path = ext/glxw
+	url = https://github.com/galaxysoftware/glxw.git

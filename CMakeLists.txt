@@ -29,6 +29,12 @@ if (GXY_ENABLE_VALGRIND)
   find_package(Valgrind REQUIRED)
 endif()
 
+set(GLXW_LIBRARY "")
+if(UNIX AND NOT APPLE)
+  add_subdirectory(ext/glxw)
+  set(GLXW_LIBRARY "glxw")
+endif()
+
 # Include path for project headers.
 include_directories(
   ${CMAKE_SOURCE_DIR}/src
@@ -41,6 +47,8 @@ include_directories(SYSTEM
 
   ${CMAKE_SOURCE_DIR}/ext/eggs-variant/include
   ${CMAKE_SOURCE_DIR}/ext/glm
+
+  ${CMAKE_CURRENT_BINARY_DIR}/ext/glxw/include
 
   ${Boost_INCLUDE_DIRS}
   ${YAMLCPP_INCLUDE_DIR}
