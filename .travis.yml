@@ -22,7 +22,14 @@ matrix:
     - env: COMPILER=clang++-3.7 BOOST_VERSION=1.60.0 BUILD_TYPE="Debug"
       addons: &packages
         apt:
-          packages: ["clang-3.7", "valgrind", "xorg-dev", "libglu1-mesa-dev"]
+          packages:
+            - clang-3.7,
+            - valgrind,
+            - xorg-dev,
+            - libglu1-mesa-dev
+            - libXxf86vm-dev
+            - libxinerama-dev
+            - libxcursor-dev
           sources:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-precise-3.7
