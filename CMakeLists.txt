@@ -29,10 +29,10 @@ if (GXY_ENABLE_VALGRIND)
   find_package(Valgrind REQUIRED)
 endif()
 
-set(GLXW_LIBRARY "")
+set(GLXW_LIBRARIES "")
 if(UNIX AND NOT APPLE)
   add_subdirectory(ext/glxw)
-  set(GLXW_LIBRARY "glxw")
+  set(GLXW_LIBRARIES "glxw;dl")
 endif()
 
 # Include path for project headers.
