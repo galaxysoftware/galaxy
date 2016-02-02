@@ -59,6 +59,7 @@ glfw_error::glfw_error(code error, const char *what)
         case code::format_unavailable: return "format_unavailable";
       };
     });
+
     static_assert(std::is_same<const char *, decltype(error_code())>{});
 
     fmt::MemoryWriter out;
@@ -68,6 +69,7 @@ glfw_error::glfw_error(code error, const char *what)
 {
 }
 
+inline
 auto glfw_error::what() const noexcept -> const char *
 {
   return out_.c_str();

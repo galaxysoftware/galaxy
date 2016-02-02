@@ -6,3 +6,13 @@ gxy_add_test(gl.glfw_error
     gtest_main
 )
 
+gxy_add_test(gl.environment
+  SOURCES
+    test_environment.cpp
+    ${CMAKE_SOURCE_DIR}/test/gl/mockglfw.cpp
+    ${CMAKE_SOURCE_DIR}/src/gl/environment.cpp
+  LIBRARIES
+    cppformat
+    gmock_main
+)
+
