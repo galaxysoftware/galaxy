@@ -88,6 +88,7 @@ add_compiler_flag(CXX
 
 # Disable unused variable warnings that can be introduced by removing assertions.
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wno-unused-variable")
 
 # Update .syntastic_cpp_config file.
 create_syntastic_config()
