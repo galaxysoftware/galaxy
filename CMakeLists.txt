@@ -33,6 +33,9 @@ if (GXY_ENABLE_VALGRIND)
   find_package(Valgrind REQUIRED)
 endif()
 
+set(FMT_TEST OFF CACHE BOOL "Build cppformat unit tests.")
+add_subdirectory(ext/cppformat)
+
 # Unix specific dependencies.
 set(GLXW_LIBRARY "")
 if(UNIX AND NOT APPLE)
@@ -51,6 +54,8 @@ include_directories(
 include_directories(SYSTEM
   ${CMAKE_SOURCE_DIR}/ext/googletest/googletest/include
   ${CMAKE_SOURCE_DIR}/ext/googletest/googlemock/include
+
+  ${CMAKE_SOURCE_DIR}/ext/cppformat
 
   ${CMAKE_SOURCE_DIR}/ext/eggs-variant/include
   ${CMAKE_SOURCE_DIR}/ext/glm

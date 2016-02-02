@@ -39,12 +39,13 @@ function(gxy_add_test TEST_NAME)
 endfunction()
 
 # Sub-folders.
+add_subdirectory(component)
+add_subdirectory(component/utils)
 add_subdirectory(config)
 add_subdirectory(config/ast)
 add_subdirectory(config/yaml)
 add_subdirectory(game)
-add_subdirectory(component)
-add_subdirectory(component/utils)
+add_subdirectory(gl)
 add_subdirectory(utils)
 add_subdirectory(utils/meta)
 
