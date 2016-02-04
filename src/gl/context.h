@@ -7,10 +7,12 @@
 
 namespace gxy::gl {
 
+class environment;
+
 class context
 {
 public:
-  context(int width, int height, const char *title);
+  context(environment &, int width, int height, const char *title);
 
   // Can't copy, can move.
   context(const context &) = delete;

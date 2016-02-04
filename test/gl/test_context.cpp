@@ -1,5 +1,6 @@
 #include "gl/context.h"
 
+#include "gl/environment.h"
 #include "gl/mockglfw.h"
 
 #include <gmock/gmock.h>
@@ -17,8 +18,10 @@ struct Fixture : public testing::Test
   const int height{89};
   const std::string title{"badger"};
 
-  ::GLFWwindow window{};
   NiceMock<gl::mockglfw> mockglfw{};
+
+  ::GLFWwindow window{};
+  gl::environment env{};
 
   Fixture()
   {
@@ -34,7 +37,7 @@ TEST_F(Fixture, CreateContext_CreatesWindow)
   EXPECT_CALL(mockglfw, CreateWindow(width, height, title.c_str(), nullptr, nullptr))
     .Times(1);
 
-  gl::context ctx{width, height, title.c_str()};
+  gl::context ctx{env, width, height, title.c_str()};
 }
 
 TEST_F(FixtureDeathTest, CreateWindowReturnsNullptr_Death)
@@ -43,7 +46,7 @@ TEST_F(FixtureDeathTest, CreateWindowReturnsNullptr_Death)
     ON_CALL(mockglfw, CreateWindow(_, _, _, _, _))
       .WillByDefault(Return(nullptr));
 
-    gl::context ctx(width, height, title.c_str());
+    gl::context ctx(env, width, height, title.c_str());
   }, "");
 }
 
@@ -52,12 +55,12 @@ TEST_F(Fixture, CreateContext_MakesContextCurrent)
   EXPECT_CALL(mockglfw, MakeContextCurrent(&window))
     .Times(1);
 
-  gl::context ctx{width, height, title.c_str()};
+  gl::context ctx{env, width, height, title.c_str()};
 }
 
 TEST_F(Fixture, DestructContext_CallsDestroyWindow)
 {
-  gl::context ctx{width, height, title.c_str()};
+  gl::context ctx{env, width, height, title.c_str()};
 
   EXPECT_CALL(mockglfw, DestroyWindow(&window))
     .Times(1);
@@ -65,7 +68,7 @@ TEST_F(Fixture, DestructContext_CallsDestroyWindow)
 
 struct ContextFixture : public Fixture
 {
-  gl::context uut{width, height, title.c_str()};
+  gl::context uut{env, width, height, title.c_str()};
 };
 
 TEST_F(ContextFixture, RunOneWindowShouldCloseTrue_ReturnsFalse)

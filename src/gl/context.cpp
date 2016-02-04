@@ -4,7 +4,7 @@
 
 namespace gxy::gl {
 
-context::context(const int width, const int height, const char *title)
+context::context(environment &, const int width, const int height, const char *title)
 : window_(::glfwCreateWindow(width, height, title, nullptr, nullptr), ::glfwDestroyWindow)
 {
   assert(window_ != nullptr);
