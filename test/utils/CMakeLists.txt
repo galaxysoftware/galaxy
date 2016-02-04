@@ -7,6 +7,10 @@ gxy_add_test(utils.is_valid
   SOURCES test_is_valid.cpp
 )
 
+gxy_add_test(utils.resource
+  SOURCES test_resource.cpp
+)
+
 gxy_add_test(utils.scoped_directory
   SOURCES
     test_scoped_directory.cpp
