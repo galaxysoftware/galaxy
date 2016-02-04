@@ -25,6 +25,9 @@ struct Fixture : public testing::Test
 
   Fixture()
   {
+    ON_CALL(mockglfw, Init())
+      .WillByDefault(Return(GL_TRUE));
+
     ON_CALL(mockglfw, CreateWindow(_, _, _, _, _))
       .WillByDefault(Return(&window));
   }
