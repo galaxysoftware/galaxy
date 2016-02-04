@@ -21,7 +21,6 @@ struct Fixture : public testing::Test
   NiceMock<gl::mockglfw> mockglfw{};
 
   ::GLFWwindow window{};
-  gl::environment env{};
 
   Fixture()
   {
@@ -33,7 +32,12 @@ struct Fixture : public testing::Test
   }
 };
 
-TEST_F(Fixture, CreateContext_CreatesWindow)
+struct EnvironmentFixture : public Fixture
+{
+  gl::environment env{};
+};
+
+TEST_F(EnvironmentFixture, CreateContext_CreatesWindow)
 {
   EXPECT_CALL(mockglfw, CreateWindow(width, height, title.c_str(), nullptr, nullptr))
     .Times(1);
@@ -41,7 +45,7 @@ TEST_F(Fixture, CreateContext_CreatesWindow)
   gl::context ctx{env, width, height, title.c_str()};
 }
 
-TEST_F(Fixture, CreateContext_MakesContextCurrent)
+TEST_F(EnvironmentFixture, CreateContext_MakesContextCurrent)
 {
   EXPECT_CALL(mockglfw, MakeContextCurrent(&window))
     .Times(1);
@@ -49,7 +53,7 @@ TEST_F(Fixture, CreateContext_MakesContextCurrent)
   gl::context ctx{env, width, height, title.c_str()};
 }
 
-TEST_F(Fixture, DestructContext_CallsDestroyWindow)
+TEST_F(EnvironmentFixture, DestructContext_CallsDestroyWindow)
 {
   gl::context ctx{env, width, height, title.c_str()};
 
@@ -57,7 +61,19 @@ TEST_F(Fixture, DestructContext_CallsDestroyWindow)
     .Times(1);
 }
 
-struct ContextFixture : public Fixture
+using EnvironmentFixtureDeathTest = EnvironmentFixture;
+
+TEST_F(EnvironmentFixtureDeathTest, CreateWindowReturnsNullptr_Death)
+{
+  ASSERT_DEATH({
+    ON_CALL(mockglfw, CreateWindow(_, _, _, _, _))
+      .WillByDefault(Return(nullptr));
+
+    gl::context ctx(env, width, height, title.c_str());
+  }, "");
+}
+
+struct ContextFixture : public EnvironmentFixture
 {
   gl::context uut{env, width, height, title.c_str()};
 };
