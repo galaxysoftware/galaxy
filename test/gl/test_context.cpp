@@ -33,24 +33,12 @@ struct Fixture : public testing::Test
   }
 };
 
-using FixtureDeathTest = Fixture;
-
 TEST_F(Fixture, CreateContext_CreatesWindow)
 {
   EXPECT_CALL(mockglfw, CreateWindow(width, height, title.c_str(), nullptr, nullptr))
     .Times(1);
 
   gl::context ctx{env, width, height, title.c_str()};
-}
-
-TEST_F(FixtureDeathTest, CreateWindowReturnsNullptr_Death)
-{
-  ASSERT_DEATH({
-    ON_CALL(mockglfw, CreateWindow(_, _, _, _, _))
-      .WillByDefault(Return(nullptr));
-
-    gl::context ctx(env, width, height, title.c_str());
-  }, "");
 }
 
 TEST_F(Fixture, CreateContext_MakesContextCurrent)
