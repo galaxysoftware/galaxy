@@ -1,6 +1,10 @@
 #ifndef TEST_GL_MOCKGLXW_H
 #define TEST_GL_MOCKGLXW_H
 
+#if BOOST_OS_LINUX
+#include <GLXW/glxw.h>
+#endif
+
 #include <gmock/gmock.h>
 
 namespace gxy::gl {

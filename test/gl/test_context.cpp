@@ -2,6 +2,7 @@
 
 #include "gl/environment.h"
 #include "gl/mockglfw.h"
+#include "gl/mockglxw.h"
 
 #include <gmock/gmock.h>
 
@@ -19,6 +20,7 @@ struct Fixture : public testing::Test
   const std::string title{"badger"};
 
   NiceMock<gl::mockglfw> mockglfw{};
+  NiceMock<gl::mockglxw> mockglxw{};
 
   ::GLFWwindow window{};
 
@@ -26,6 +28,9 @@ struct Fixture : public testing::Test
   {
     ON_CALL(mockglfw, Init())
       .WillByDefault(Return(GL_TRUE));
+
+    ON_CALL(mockglxw, Init())
+      .WillByDefault(Return(0));
 
     ON_CALL(mockglfw, CreateWindow(_, _, _, _, _))
       .WillByDefault(Return(&window));
