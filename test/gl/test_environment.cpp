@@ -2,6 +2,9 @@
 
 #include "gl/glfw_error.h"
 #include "gl/mockglfw.h"
+#include "gl/mockglxw.h"
+
+#include <boost/predef.h>
 
 #include <gmock/gmock.h>
 
@@ -17,10 +20,16 @@ using testing::Return;
 
 struct Fixture : public testing::Test
 {
+  NiceMock<gl::mockglxw> mockglxw{};
   NiceMock<gl::mockglfw> mockglfw{};
 
   Fixture()
   {
+#if BOOST_OS_MACOS
+    EXPECT_CALL(mockglxw, Init())
+      .Times(0);
+#endif
+
     ON_CALL(mockglfw, Init())
       .WillByDefault(Return(GL_TRUE));
   }
@@ -39,7 +48,7 @@ TEST_F(Fixture, InitReturnsFalse_Throw)
   EXPECT_CALL(mockglfw, Init())
     .WillOnce(Return(GL_FALSE));
 
-  ASSERT_THROW(gl::environment(), gl::glfw_error);
+  ASSERT_THROW(gl::environment(), std::runtime_error);
 }
 
 TEST_F(Fixture, SetErrorCallbackCalled)

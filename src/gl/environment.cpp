@@ -4,13 +4,25 @@
 
 #include <GLFW/glfw3.h>
 
+#include <boost/predef.h>
+
+#if BOOST_OS_LINUX
+#include <GLXW/glxw.h>
+#endif
+
 namespace gxy::gl {
 
 environment::environment()
 {
-  if (! ::glfwInit()) {
-    throw glfw_error{"Unable to initialise GLFW."};
+  if (::glfwInit() != GL_TRUE) {
+    throw std::runtime_error{"Unable to initialise GLFW."};
   }
+
+#if BOOST_OS_LINUX
+  if (::glxwInit() != 0) {
+    throw std::runtime_error{"Unable to initialise GLXW."};
+  }
+#endif
 
   const auto previous(::glfwSetErrorCallback([](int error, const char *what) {
     throw glfw_error{static_cast<glfw_error::code>(error), what};
