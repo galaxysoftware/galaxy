@@ -14,6 +14,11 @@ auto glfwCreateWindow(const int width, const int height, const char *title, GLFW
   return mockglfw::instance->CreateWindow(width, height, title, monitor, window);
 }
 
+auto glfwDefaultWindowHints() -> void
+{
+  mockglfw::instance->DefaultWindowHints();
+}
+
 auto glfwDestroyWindow(::GLFWwindow *window) -> void
 {
   return mockglfw::instance->DestroyWindow(window);
@@ -47,6 +52,11 @@ auto glfwSwapBuffers(::GLFWwindow *window) -> void
 auto glfwTerminate() -> void
 {
   mockglfw::instance->Terminate();
+}
+
+auto glfwWindowHint(int target, int value) -> void
+{
+  mockglfw::instance->WindowHint(target, value);
 }
 
 auto glfwWindowShouldClose(::GLFWwindow *window) -> int

@@ -45,6 +45,41 @@ TEST_F(EnvironmentFixture, CreateContext_CreatesWindow)
   gl::context ctx{env, width, height, title.c_str()};
 }
 
+TEST_F(EnvironmentFixture, CreateContext_SetsWindowHintsBefore)
+{
+  InSequence s;
+
+  EXPECT_CALL(mockglfw, WindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4))
+    .Times(1);
+
+  EXPECT_CALL(mockglfw, WindowHint(GLFW_CONTEXT_VERSION_MINOR, 1))
+    .Times(1);
+
+  EXPECT_CALL(mockglfw, WindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE))
+    .Times(1);
+
+  EXPECT_CALL(mockglfw, WindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE))
+    .Times(1);
+
+  EXPECT_CALL(mockglfw, CreateWindow(_, _, _, _, _))
+    .Times(1);
+
+  gl::context ctx{env, width, height, title.c_str()};
+}
+
+TEST_F(EnvironmentFixture, CreateContext_ResetWindowHintsAfter)
+{
+  InSequence s;
+
+  EXPECT_CALL(mockglfw, CreateWindow(_, _, _, _, _))
+    .Times(1);
+
+  EXPECT_CALL(mockglfw, DefaultWindowHints())
+    .Times(1);
+
+  gl::context ctx{env, width, height, title.c_str()};
+}
+
 TEST_F(EnvironmentFixture, CreateContext_MakesContextCurrent)
 {
   EXPECT_CALL(mockglfw, MakeContextCurrent(&window))

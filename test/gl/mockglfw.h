@@ -12,6 +12,7 @@ struct mockglfw
   mockglfw();
 
   MOCK_CONST_METHOD5(CreateWindow, ::GLFWwindow *(int, int, const char *, GLFWmonitor *, GLFWwindow *));
+  MOCK_CONST_METHOD0(DefaultWindowHints, void());
   MOCK_CONST_METHOD1(DestroyWindow, void(::GLFWwindow *));
   MOCK_CONST_METHOD0(Init, int());
   MOCK_CONST_METHOD1(MakeContextCurrent, void(::GLFWwindow *));
@@ -19,6 +20,7 @@ struct mockglfw
   MOCK_CONST_METHOD1(SetErrorCallback, ::GLFWerrorfun(::GLFWerrorfun));
   MOCK_CONST_METHOD1(SwapBuffers, void(::GLFWwindow *));
   MOCK_CONST_METHOD0(Terminate, void());
+  MOCK_CONST_METHOD2(WindowHint, void(int, int));
   MOCK_CONST_METHOD1(WindowShouldClose, int(::GLFWwindow *));
 
   static mockglfw *instance;
