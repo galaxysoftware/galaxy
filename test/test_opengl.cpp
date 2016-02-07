@@ -18,7 +18,7 @@ struct Fixture : public testing::Test
 TEST_F(Fixture, OpenGLMajorVersion)
 {
   int major{};
-  ::glGetIntegerv(GL_MAJOR_VERSION, &major);
+  glGetIntegerv(GL_MAJOR_VERSION, &major);
 
   ASSERT_EQ(4, major);
 }
@@ -26,7 +26,7 @@ TEST_F(Fixture, OpenGLMajorVersion)
 TEST_F(Fixture, OpenGLMinorVersion)
 {
   int minor{};
-  ::glGetIntegerv(GL_MINOR_VERSION, &minor);
+  glGetIntegerv(GL_MINOR_VERSION, &minor);
 
   ASSERT_EQ(1, minor);
 }
