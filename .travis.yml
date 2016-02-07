@@ -27,6 +27,8 @@ matrix:
             - valgrind
             - xorg-dev
             - libxxf86vm-dev
+            - libX11-dev
+            - libgl1-mesa-dev
             - mesa-utils
           sources:
             - ubuntu-toolchain-r-test
