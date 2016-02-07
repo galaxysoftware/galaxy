@@ -48,6 +48,8 @@ matrix:
 install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - glxinfo
+
   - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=$BUILD_TYPE"
   - if [ -n "$VALGRIND" ]; then CMAKE_OPTIONS+=" -DGXY_ENABLE_VALGRIND=true"; fi
 
