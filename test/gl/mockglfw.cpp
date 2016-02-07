@@ -6,6 +6,10 @@ mockglfw *mockglfw::instance = nullptr;
 
 } // namespace gxy::gl
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 using gxy::gl::mockglfw;
 
 auto glfwCreateWindow(const int width, const int height, const char *title, GLFWmonitor *monitor, GLFWwindow *window)
@@ -63,4 +67,8 @@ auto glfwWindowShouldClose(::GLFWwindow *window) -> int
 {
   return mockglfw::instance->WindowShouldClose(window);
 }
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 

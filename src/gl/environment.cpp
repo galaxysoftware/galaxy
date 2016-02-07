@@ -8,9 +8,6 @@
 
 #if BOOST_OS_LINUX
 #include <GLXW/glxw.h>
-
-extern int glxwInit();
-
 #endif
 
 namespace gxy::gl {
