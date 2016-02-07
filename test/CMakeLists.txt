@@ -75,3 +75,17 @@ gxy_add_test(glfw
     gtest_main
 )
 
+gxy_add_test(opengl
+  SOURCES
+    test_opengl.cpp
+    ${CMAKE_SOURCE_DIR}/src/gl/context.cpp
+    ${CMAKE_SOURCE_DIR}/src/gl/environment.cpp
+  LIBRARIES
+    cppformat
+    ${OPENGL_LIBRARIES}
+    ${GLFW_LIBRARY}
+    ${GLXW_LIBRARY}
+    ${XINERAMA_LIBRARIES}
+    gtest_main
+)
+

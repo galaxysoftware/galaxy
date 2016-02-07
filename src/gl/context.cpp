@@ -6,14 +6,15 @@ namespace gxy::gl {
 
 namespace {
 
-auto make_window(const int width, const int height, const char *title) -> GLFWwindow *
+auto make_window(const int width, const int height, const char *title)
+  -> resource<GLFWwindow>
 {
   ::glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
   ::glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
   ::glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
   ::glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  auto *window(::glfwCreateWindow(width, height, title, nullptr, nullptr));
+  resource<GLFWwindow> window(::glfwCreateWindow(width, height, title, nullptr, nullptr), ::glfwDestroyWindow);
 
   ::glfwDefaultWindowHints();
   return window;
@@ -22,7 +23,7 @@ auto make_window(const int width, const int height, const char *title) -> GLFWwi
 } // unnamed namespace
 
 context::context(environment &, const int width, const int height, const char *title)
-: window_(make_window(width, height, title), ::glfwDestroyWindow)
+: window_(make_window(width, height, title))
 {
   assert(window_ != nullptr);
   ::glfwMakeContextCurrent(window_.get());
