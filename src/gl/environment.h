@@ -1,6 +1,14 @@
 #ifndef GL_ENVIRONMENT_H
 #define GL_ENVIRONMENT_H
 
+#include <boost/predef.h>
+
+#include <GLFW/glfw3.h>
+
+#if BOOST_OS_LINUX
+#include <GLXW/glxw.h>
+#endif
+
 namespace gxy::gl {
 
 // Stateless class that handles initialising and tearing down GLFW. Also manages the error callback.

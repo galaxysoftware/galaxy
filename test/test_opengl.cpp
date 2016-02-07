@@ -1,8 +1,6 @@
 #include "gl/context.h"
 #include "gl/environment.h"
 
-#include <GLFW/glfw3.h>
-
 #include <gtest/gtest.h>
 
 using namespace gxy;
