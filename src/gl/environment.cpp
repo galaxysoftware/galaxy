@@ -2,14 +2,6 @@
 
 #include "gl/glfw_error.h"
 
-#include <GLFW/glfw3.h>
-
-#include <boost/predef.h>
-
-#if BOOST_OS_LINUX
-#include <GLXW/glxw.h>
-#endif
-
 namespace gxy::gl {
 
 environment::environment()
