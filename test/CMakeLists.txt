@@ -70,7 +70,6 @@ gxy_add_test(glfw
   LIBRARIES
     ${OPENGL_LIBRARIES}
     ${GLFW_LIBRARY}
-    ${GLXW_LIBRARY}
     ${XINERAMA_LIBRARIES}
     gtest_main
 )

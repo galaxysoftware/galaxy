@@ -2,9 +2,16 @@
 
 #include <gtest/gtest.h>
 
-TEST(GLFW, IncludesGLCoreArb)
+TEST(GLFW, IncludeGLCoreArbDefined)
 {
 #ifndef GLFW_INCLUDE_GLCOREARB
+  FAIL();
+#endif
+}
+
+TEST(GLFW, GlCoreArbFound)
+{
+#ifndef GLAPI
   FAIL();
 #endif
 }
