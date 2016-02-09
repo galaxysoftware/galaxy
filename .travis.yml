@@ -27,7 +27,6 @@ matrix:
             - valgrind
             - xorg-dev
             - libxxf86vm-dev
-            - mesa-utils
           sources:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-precise-3.7
@@ -46,7 +45,6 @@ matrix:
       addons: *packages
 
 install:
-  - glxinfo
   - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=$BUILD_TYPE"
   - if [ -n "$VALGRIND" ]; then CMAKE_OPTIONS+=" -DGXY_ENABLE_VALGRIND=true"; fi
 
