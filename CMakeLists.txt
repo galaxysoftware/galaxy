@@ -56,9 +56,9 @@ include_directories(SYSTEM
   ${CMAKE_SOURCE_DIR}/ext/googletest/googlemock/include
 
   ${CMAKE_SOURCE_DIR}/ext/cppformat
-
   ${CMAKE_SOURCE_DIR}/ext/eggs-variant/include
   ${CMAKE_SOURCE_DIR}/ext/glm
+  ${CMAKE_SOURCE_DIR}/ext/hana/include
 
   ${CMAKE_CURRENT_BINARY_DIR}/ext/glxw/include
 

@@ -16,3 +16,6 @@
 [submodule "ext/cppformat"]
 	path = ext/cppformat
 	url = https://github.com/cppformat/cppformat.git
+[submodule "ext/hana"]
+	path = ext/hana
+	url = https://github.com/boostorg/hana.git
