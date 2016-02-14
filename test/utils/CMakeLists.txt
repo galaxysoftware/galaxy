@@ -17,6 +17,10 @@ gxy_add_test(utils.scoped_directory
     gtest_main
 )
 
+gxy_adD_test(utils.string_view
+  SOURCES test_string_view.cpp
+)
+
 gxy_add_test(utils.throw_if
   SOURCES
     test_throw_if.cpp

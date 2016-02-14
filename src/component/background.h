@@ -32,7 +32,7 @@ public:
 
 // Name of node.
 template <>
-static std::string name<background> = "background";
+static string_view name<background> = "background";
 
 } // namespace components
 

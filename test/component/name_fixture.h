@@ -18,7 +18,7 @@ TYPED_TEST_CASE_P(NameFixture);
 
 TYPED_TEST_P(NameFixture, ComponentNameType_IsString)
 {
-  ASSERT_TRUE((std::is_same<decltype(components::name<TypeParam>), std::string>{}));
+  ASSERT_TRUE((std::is_same<decltype(components::name<TypeParam>), gxy::string_view>{}));
 }
 
 TYPED_TEST_P(NameFixture, ComponentName_IsExpected)
