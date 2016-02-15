@@ -29,9 +29,9 @@ function(gxy_add_test TEST_NAME)
   target_link_libraries("${TEST_EXECUTABLE}" ${TEST_LIBRARIES})
 
   if (GXY_ENABLE_VALGRIND)
-    set(TEST_COMMAND ${Valgrind_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/${TEST_NAME})
+    set(TEST_COMMAND ${Valgrind_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/${TEST_EXECUTABLE})
   else()
-    set(TEST_COMMAND "${TEST_NAME}")
+    set(TEST_COMMAND "${TEST_EXECUTABLE}")
   endif()
 
   set(ARGS "")
