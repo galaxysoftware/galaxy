@@ -2,7 +2,7 @@
 gxy_add_test(component.utils.empty_data
   SOURCES
     test_empty_data.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
+    $<TARGET_OBJECTS:component.utils>
   LIBRARIES
     gtest_main
     ${YAMLCPP_LIBRARY}

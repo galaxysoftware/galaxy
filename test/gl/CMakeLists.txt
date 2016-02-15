@@ -11,8 +11,7 @@ gxy_add_test(gl.context
     test_context.cpp
     ${CMAKE_SOURCE_DIR}/test/gl/mockglfw.cpp
     ${CMAKE_SOURCE_DIR}/test/gl/mockglxw.cpp
-    ${CMAKE_SOURCE_DIR}/src/gl/context.cpp
-    ${CMAKE_SOURCE_DIR}/src/gl/environment.cpp
+    $<TARGET_OBJECTS:gl>
   LIBRARIES
     cppformat
     gmock_main
@@ -23,7 +22,7 @@ gxy_add_test(gl.environment
     test_environment.cpp
     ${CMAKE_SOURCE_DIR}/test/gl/mockglfw.cpp
     ${CMAKE_SOURCE_DIR}/test/gl/mockglxw.cpp
-    ${CMAKE_SOURCE_DIR}/src/gl/environment.cpp
+    $<TARGET_OBJECTS:gl>
   LIBRARIES
     cppformat
     gmock_main
@@ -35,7 +34,7 @@ if(UNIX AND NOT APPLE)
       test_environment_linux.cpp
       ${CMAKE_SOURCE_DIR}/test/gl/mockglfw.cpp
       ${CMAKE_SOURCE_DIR}/test/gl/mockglxw.cpp
-      ${CMAKE_SOURCE_DIR}/src/gl/environment.cpp
+      $<TARGET_OBJECTS:gl>
     LIBRARIES
       cppformat
       gmock_main

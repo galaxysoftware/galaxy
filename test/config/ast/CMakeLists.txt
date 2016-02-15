@@ -2,10 +2,9 @@
 gxy_add_test(config.ast.component
   SOURCES
     test_component.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
+    $<TARGET_OBJECTS:config.ast>
   LIBRARIES
     ${YAMLCPP_LIBRARY}
     gtest_main
@@ -14,11 +13,9 @@ gxy_add_test(config.ast.component
 gxy_add_test(config.ast.entity
   SOURCES
     test_entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
+    $<TARGET_OBJECTS:config.ast>
   LIBRARIES
     ${YAMLCPP_LIBRARY}
     gtest_main
@@ -27,12 +24,9 @@ gxy_add_test(config.ast.entity
 gxy_add_test(config.ast.scene
   SOURCES
     test_scene.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/scene.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
+    $<TARGET_OBJECTS:config.ast>
   LIBRARIES
     ${YAMLCPP_LIBRARY}
     gtest_main

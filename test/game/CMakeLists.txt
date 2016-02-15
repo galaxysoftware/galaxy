@@ -2,9 +2,8 @@
 gxy_add_test(game.component
   SOURCES
     test_component.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:game>
   LIBRARIES
     gtest_main
     ${YAMLCPP_LIBRARY}
@@ -13,29 +12,25 @@ gxy_add_test(game.component
 gxy_add_test(game.entity
   SOURCES
     test_entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/entity.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
+    $<TARGET_OBJECTS:config>
+    $<TARGET_OBJECTS:config.ast>
+    $<TARGET_OBJECTS:game>
   LIBRARIES
     gtest_main
+    ${Boost_FILESYSTEM_LIBRARY}
+    ${Boost_SYSTEM_LIBRARY}
     ${YAMLCPP_LIBRARY}
 )
 
 gxy_add_test(game.scene
   SOURCES
     test_scene.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/scene.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
+    $<TARGET_OBJECTS:config.ast>
+    $<TARGET_OBJECTS:game>
   LIBRARIES
     gtest_main
     ${YAMLCPP_LIBRARY}
@@ -44,17 +39,12 @@ gxy_add_test(game.scene
 gxy_add_test(game.load
   SOURCES
     test_load.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/scene.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/load.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/game/scene.cpp
-    ${CMAKE_SOURCE_DIR}/src/utils/scoped_directory.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
+    $<TARGET_OBJECTS:config>
+    $<TARGET_OBJECTS:config.ast>
+    $<TARGET_OBJECTS:game>
+    $<TARGET_OBJECTS:utils>
   LIBRARIES
     ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_SYSTEM_LIBRARY}

@@ -1,15 +1,15 @@
 # Unit tests for loading a config.
+add_subdirectory(ast)
+add_subdirectory(yaml)
+
 gxy_add_test(config.load
   SOURCES
     test_load.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/component.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/entity.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/ast/scene.cpp
-    ${CMAKE_SOURCE_DIR}/src/config/load.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
-    ${CMAKE_SOURCE_DIR}/src/utils/scoped_directory.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
+    $<TARGET_OBJECTS:config>
+    $<TARGET_OBJECTS:config.ast>
+    $<TARGET_OBJECTS:utils>
   LIBRARIES
     ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_SYSTEM_LIBRARY}

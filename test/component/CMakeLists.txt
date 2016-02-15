@@ -1,9 +1,11 @@
 # Unit tests for component.
+add_subdirectory(utils)
+
 gxy_add_test(component.background
   SOURCES
     test_background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/background.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
   LIBRARIES
     gtest_main
     ${YAMLCPP_LIBRARY}
@@ -12,8 +14,8 @@ gxy_add_test(component.background
 gxy_add_test(component.transform
   SOURCES
     test_transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/transform.cpp
-    ${CMAKE_SOURCE_DIR}/src/component/utils/empty_data.cpp
+    $<TARGET_OBJECTS:component>
+    $<TARGET_OBJECTS:component.utils>
   LIBRARIES
     gtest_main
     ${YAMLCPP_LIBRARY}

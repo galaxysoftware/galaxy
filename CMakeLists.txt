@@ -96,5 +96,6 @@ create_syntastic_config()
 # Required subdirectories.
 add_subdirectory(ext/googletest)
 
+add_subdirectory(src)
 add_subdirectory(test)
 
